@@ -15,9 +15,17 @@ app.use('/uploads', express.static('uploads'));
 // Routers
 const AuthRouter = require('./Routes/AuthRouter');
 const ProductRouter = require('./Routes/ProductRouter');
+const boothRoutes = require("./Routes/BoothRouter");
+const expoRoutes = require("./Routes/ExpoRouter");
+const exhibitorRoutes = require("./Routes/ExhibitorRouter");
+const scheduleRoutes = require("./Routes/ScheduleRouter");
 
 app.use('/api/auth', AuthRouter);
 app.use('/products', ProductRouter);
+app.use("/api/booths", boothRoutes);
+app.use("/api/expos", expoRoutes); 
+app.use("/api/exhibitors", exhibitorRoutes);
+app.use("/api/schedules", scheduleRoutes);
 
 app.get('/ping', (req, res) => {
   res.send('PONG');

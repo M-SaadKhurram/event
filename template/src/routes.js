@@ -50,17 +50,15 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
-// Public Pages
-const Home = React.lazy(() => import('./views/pages/home/Home'))
-const About = React.lazy(() => import('./views/pages/home/About'))
-const Contact = React.lazy(() => import('./views/pages/home/Contact'))
-const Feedback = React.lazy(() => import('./views/pages/home/Feedback'))
+// Booth components
+const BoothsList = React.lazy(() => import('./views/booths/index'))
+const BoothCreate = React.lazy(() => import('./views/booths/Create'))
+const BoothEdit = React.lazy(() => import('./views/booths/Edit'))
 
-// Auth Pages
-const Login = React.lazy(() => import('./views/pages/login/Login'))
-const Register = React.lazy(() => import('./views/pages/register/Register'))
-const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
-const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
+// Expo components
+const ExposList = React.lazy(() => import('./views/expos/index'))
+const ExpoCreate = React.lazy(() => import('./views/expos/Create'))
+const ExpoEdit = React.lazy(() => import('./views/expos/Edit'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -105,24 +103,18 @@ const routes = [
   { path: '/notifications/alerts', name: 'Alerts', element: Alerts },
   { path: '/notifications/badges', name: 'Badges', element: Badges },
   { path: '/notifications/modals', name: 'Modals', element: Modals },
-  { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
+  { path: '/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
-]
-
-// Public routes (for PublicLayout)
-export const publicRoutes = [
-  { path: '/', name: 'Home', element: Home,  },
-  { path: '/about', name: 'About Us', element: About },
-  { path: '/contact', name: 'Contact Us', element: Contact },
-  { path: '/feedback', name: 'Feedback', element: Feedback },
-]
-
-// Auth routes (standalone pages)
-export const authRoutes = [
-  { path: '/login', name: 'Login', element: Login },
-  { path: '/register', name: 'Register', element: Register },
-  { path: '/404', name: 'Page 404', element: Page404 },
-  { path: '/500', name: 'Page 500', element: Page500 },
+  
+  // Booth routes
+  { path: '/booths', name: 'Booths', element: BoothsList, exact: true },
+  { path: '/booths/create', name: 'Create Booth', element: BoothCreate },
+  { path: '/booths/edit/:id', name: 'Edit Booth', element: BoothEdit },
+  
+  // Expo routes
+  { path: '/expos', name: 'Expos', element: ExposList, exact: true },
+  { path: '/expos/create', name: 'Create Expo', element: ExpoCreate },
+  { path: '/expos/edit/:id', name: 'Edit Expo', element: ExpoEdit },
 ]
 
 export default routes

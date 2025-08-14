@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ensureAuthenticated = require('../Middlewares/Auth'); // your auth middleware
+const ensureAuthenticated = require('../Middlewares/Auth'); 
 const productController = require('../Controllers/productController');
 const upload = require('../Middlewares/upload');
 

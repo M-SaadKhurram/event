@@ -10,29 +10,30 @@ import {
   CFormLabel,
   CFormSelect,
   CFormTextarea,
-  CFormSwitch,
+  CFormCheck,
   CButton,
   CInputGroup,
   CInputGroupText,
-  CFormFeedback,
   CAlert,
-  CBadge,
   CSpinner,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { 
   cilSave, 
   cilArrowLeft, 
-  cilLightbulb, // Use cilLightbulb instead of cilPower
-  cilWifi, 
-  cilLocationPin 
+  cilLightbulb,
+  cilLocationPin,
+  cilWeightlifitng,
+  cilWifiSignal0,
+  cilWifiSignal4,
+  
 } from '@coreui/icons'
 import { useNavigate, useParams } from 'react-router-dom'
+import { getBooth, updateBooth } from '../../services/booths'
 
-const BoothForm = () => {
+const BoothEdit = () => {
   const navigate = useNavigate()
   const { id } = useParams()
-  const isEdit = Boolean(id)
 
   const [formData, setFormData] = useState({
     booth_number: '',
@@ -45,43 +46,63 @@ const BoothForm = () => {
     has_power: false,
     has_wifi: false,
     is_corner_booth: false,
-    assigned_to: '',
     notes: '',
   })
 
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [alert, setAlert] = useState({ show: false, message: '', color: '' })
 
   useEffect(() => {
-    if (isEdit) {
+    if (id) {
       fetchBooth()
     }
-  }, [id, isEdit])
+  }, [id])
 
   const fetchBooth = async () => {
     try {
       setLoading(true)
-      // TODO: Replace with actual API call
-      const mockBooth = {
-        id: parseInt(id),
-        booth_number: 'A101',
-        floor: 1,
-        length: 10,
-        width: 8,
-        size_unit: 'ft',
-        status: 'available',
-        price: 1500.00,
-        has_power: true,
-        has_wifi: true,
-        is_corner_booth: false,
-        assigned_to: '',
-        notes: 'Prime location near entrance'
+      const response = await getBooth(id)
+      
+      // Handle the response structure from your backend
+      const booth = response.booth || response
+      
+      // Format price for display
+      let formattedPrice = ''
+      if (booth.price) {
+        // Handle Mongoose Decimal128 format
+        if (typeof booth.price === 'object' && booth.price.$numberDecimal) {
+          formattedPrice = booth.price.$numberDecimal
+        } else {
+          formattedPrice = booth.price.toString()
+        }
       }
-      setFormData(mockBooth)
+
+      setFormData({
+        booth_number: booth.booth_number || '',
+        floor: booth.floor || 1,
+        length: booth.length?.toString() || '',
+        width: booth.width?.toString() || '',
+        size_unit: booth.size_unit || 'ft',
+        status: booth.status || 'available',
+        price: formattedPrice,
+        has_power: booth.has_power || false,
+        has_wifi: booth.has_wifi || false,
+        is_corner_booth: booth.is_corner_booth || false,
+        notes: booth.notes || '',
+      })
     } catch (error) {
-      showAlert('Error fetching booth details', 'danger')
+      console.error('Error fetching booth:', error)
+      
+      let errorMessage = 'Error loading booth details'
+      if (error.response?.status === 404) {
+        errorMessage = 'Booth not found'
+      } else if (error.response?.status === 401) {
+        errorMessage = 'You are not authorized to view this booth'
+      }
+      
+      showAlert(errorMessage, 'danger')
     } finally {
       setLoading(false)
     }
@@ -89,7 +110,7 @@ const BoothForm = () => {
 
   const showAlert = (message, color) => {
     setAlert({ show: true, message, color })
-    setTimeout(() => setAlert({ show: false, message: '', color: '' }), 3000)
+    setTimeout(() => setAlert({ show: false, message: '', color: '' }), 5000)
   }
 
   const handleInputChange = (e) => {
@@ -132,35 +153,54 @@ const BoothForm = () => {
     e.preventDefault()
     
     if (!validateForm()) {
+      showAlert('Please fix the errors below', 'danger')
       return
     }
 
     setIsSubmitting(true)
     try {
-      // Convert numeric fields
+      // Prepare data for API
       const dataToSave = {
-        ...formData,
+        booth_number: formData.booth_number.trim(),
+        floor: parseInt(formData.floor),
         length: parseFloat(formData.length),
         width: parseFloat(formData.width),
-        price: formData.price ? parseFloat(formData.price) : null,
-        floor: parseInt(formData.floor),
+        size_unit: formData.size_unit,
+        status: formData.status,
+        price: formData.price ? parseFloat(formData.price) : 0,
+        has_power: formData.has_power,
+        has_wifi: formData.has_wifi,
+        is_corner_booth: formData.is_corner_booth,
+        notes: formData.notes.trim(),
       }
       
-      // TODO: Replace with actual API call
-      console.log('Saving booth:', dataToSave)
+      await updateBooth(id, dataToSave)
       
-      showAlert(
-        isEdit ? 'Booth updated successfully' : 'Booth created successfully', 
-        'success'
-      )
+      showAlert('Booth updated successfully!', 'success')
       
       // Navigate back to list after short delay
       setTimeout(() => {
-        navigate('/booths')
-      }, 1500)
+        navigate('/dashboard/booths')
+      }, 2000)
       
     } catch (error) {
-      showAlert('Error saving booth', 'danger')
+      console.error('Error updating booth:', error)
+      
+      let errorMessage = 'Error updating booth. Please try again.'
+      
+      if (error.response?.data?.message) {
+        errorMessage = error.response.data.message
+      } else if (error.response?.status === 400) {
+        errorMessage = 'Invalid booth data. Please check your inputs.'
+      } else if (error.response?.status === 401) {
+        errorMessage = 'You are not authorized to update this booth.'
+      } else if (error.response?.status === 404) {
+        errorMessage = 'Booth not found.'
+      } else if (error.response?.status === 409) {
+        errorMessage = 'A booth with this number already exists on this floor.'
+      }
+      
+      showAlert(errorMessage, 'danger')
     } finally {
       setIsSubmitting(false)
     }
@@ -170,7 +210,7 @@ const BoothForm = () => {
     const length = parseFloat(formData.length)
     const width = parseFloat(formData.width)
     if (length && width) {
-      return (length * width).toFixed(1)
+      return (length * width).toFixed(2)
     }
     return '0'
   }
@@ -207,14 +247,15 @@ const BoothForm = () => {
           <CCard>
             <CCardHeader>
               <div className="d-flex justify-content-between align-items-center">
-                <strong>{isEdit ? 'Edit Booth' : 'Create New Booth'}</strong>
+                <strong>Edit Booth</strong>
                 <CButton 
                   color="secondary" 
                   variant="outline"
-                  onClick={() => navigate('/booths')}
+                  onClick={() => navigate('/dashboard/booths')}
+                  disabled={isSubmitting}
                 >
                   <CIcon icon={cilArrowLeft} className="me-2" />
-                  Back to List
+                  Back to Booths
                 </CButton>
               </div>
             </CCardHeader>
@@ -230,27 +271,31 @@ const BoothForm = () => {
                       onChange={handleInputChange}
                       invalid={!!errors.booth_number}
                       placeholder="e.g., A101, B205"
+                      disabled={isSubmitting}
                     />
-                    <CFormFeedback invalid>{errors.booth_number}</CFormFeedback>
+                    {errors.booth_number && (
+                      <div className="invalid-feedback">{errors.booth_number}</div>
+                    )}
                   </CCol>
                   <CCol md={6}>
-                    <CFormLabel htmlFor="floor">Floor</CFormLabel>
+                    <CFormLabel htmlFor="floor">Floor *</CFormLabel>
                     <CFormSelect
                       id="floor"
                       name="floor"
                       value={formData.floor}
                       onChange={handleInputChange}
+                      disabled={isSubmitting}
                     >
-                      <option value={1}>Floor 1 - Ground Level</option>
-                      <option value={2}>Floor 2 - Mezzanine</option>
-                      <option value={3}>Floor 3 - Upper Level</option>
-                      <option value={4}>Floor 4 - Premium Level</option>
+                      <option value={1}>Floor 1</option>
+                      <option value={2}>Floor 2</option>
+                      <option value={3}>Floor 3</option>
+                      <option value={4}>Floor 4</option>
                     </CFormSelect>
                   </CCol>
                 </CRow>
 
                 <CRow className="mb-3">
-                  <CCol md={3}>
+                  <CCol md={4}>
                     <CFormLabel htmlFor="length">Length *</CFormLabel>
                     <CInputGroup>
                       <CFormInput
@@ -258,16 +303,20 @@ const BoothForm = () => {
                         name="length"
                         type="number"
                         step="0.1"
+                        min="0.1"
                         value={formData.length}
                         onChange={handleInputChange}
                         invalid={!!errors.length}
                         placeholder="10"
+                        disabled={isSubmitting}
                       />
                       <CInputGroupText>{formData.size_unit}</CInputGroupText>
                     </CInputGroup>
-                    <CFormFeedback invalid>{errors.length}</CFormFeedback>
+                    {errors.length && (
+                      <div className="invalid-feedback">{errors.length}</div>
+                    )}
                   </CCol>
-                  <CCol md={3}>
+                  <CCol md={4}>
                     <CFormLabel htmlFor="width">Width *</CFormLabel>
                     <CInputGroup>
                       <CFormInput
@@ -275,39 +324,43 @@ const BoothForm = () => {
                         name="width"
                         type="number"
                         step="0.1"
+                        min="0.1"
                         value={formData.width}
                         onChange={handleInputChange}
                         invalid={!!errors.width}
                         placeholder="8"
+                        disabled={isSubmitting}
                       />
                       <CInputGroupText>{formData.size_unit}</CInputGroupText>
                     </CInputGroup>
-                    <CFormFeedback invalid>{errors.width}</CFormFeedback>
+                    {errors.width && (
+                      <div className="invalid-feedback">{errors.width}</div>
+                    )}
                   </CCol>
-                  <CCol md={3}>
-                    <CFormLabel htmlFor="size_unit">Unit</CFormLabel>
+                  <CCol md={4}>
+                    <CFormLabel htmlFor="size_unit">Unit *</CFormLabel>
                     <CFormSelect
                       id="size_unit"
                       name="size_unit"
                       value={formData.size_unit}
                       onChange={handleInputChange}
+                      disabled={isSubmitting}
                     >
-                      <option value="ft">Feet (ft)</option>
-                      <option value="m">Meters (m)</option>
+                      <option value="ft">Feet</option>
+                      <option value="m">Meters</option>
                     </CFormSelect>
                   </CCol>
-                  <CCol md={3}>
-                    <CFormLabel>Total Area</CFormLabel>
-                    <CInputGroup>
-                      <CFormInput
-                        value={calculateArea()}
-                        disabled
-                        className="bg-light"
-                      />
-                      <CInputGroupText>{formData.size_unit}²</CInputGroupText>
-                    </CInputGroup>
-                  </CCol>
                 </CRow>
+
+                {formData.length && formData.width && (
+                  <CRow className="mb-3">
+                    <CCol md={12}>
+                      <div className="alert alert-info">
+                        <strong>Total Area:</strong> {calculateArea()} {formData.size_unit}²
+                      </div>
+                    </CCol>
+                  </CRow>
+                )}
 
                 <CRow className="mb-3">
                   <CCol md={6}>
@@ -317,6 +370,7 @@ const BoothForm = () => {
                       name="status"
                       value={formData.status}
                       onChange={handleInputChange}
+                      disabled={isSubmitting}
                     >
                       <option value="available">Available</option>
                       <option value="reserved">Reserved</option>
@@ -325,7 +379,7 @@ const BoothForm = () => {
                     </CFormSelect>
                   </CCol>
                   <CCol md={6}>
-                    <CFormLabel htmlFor="price">Price (Optional)</CFormLabel>
+                    <CFormLabel htmlFor="price">Price</CFormLabel>
                     <CInputGroup>
                       <CInputGroupText>$</CInputGroupText>
                       <CFormInput
@@ -333,75 +387,65 @@ const BoothForm = () => {
                         name="price"
                         type="number"
                         step="0.01"
+                        min="0"
                         value={formData.price}
                         onChange={handleInputChange}
                         invalid={!!errors.price}
                         placeholder="1500.00"
+                        disabled={isSubmitting}
                       />
                     </CInputGroup>
-                    <CFormFeedback invalid>{errors.price}</CFormFeedback>
-                  </CCol>
-                </CRow>
-
-                <CRow className="mb-3">
-                  <CCol md={12}>
-                    <CFormLabel htmlFor="assigned_to">Assigned To (Optional)</CFormLabel>
-                    <CFormInput
-                      id="assigned_to"
-                      name="assigned_to"
-                      value={formData.assigned_to}
-                      onChange={handleInputChange}
-                      placeholder="Exhibitor name or company"
-                    />
+                    {errors.price && (
+                      <div className="invalid-feedback">{errors.price}</div>
+                    )}
                   </CCol>
                 </CRow>
 
                 {/* Features Section */}
                 <CRow className="mb-3">
                   <CCol xs={12}>
-                    <h6 className="mb-3">Booth Features</h6>
-                  </CCol>
-                  <CCol md={4}>
-                    <CFormSwitch
-                      id="has_power"
-                      name="has_power"
-                      label={
-                        <span>
-                          <CIcon icon={cilLightbulb} className="me-2" />
-                          Power Available
-                        </span>
-                      }
-                      checked={formData.has_power}
-                      onChange={handleInputChange}
-                    />
-                  </CCol>
-                  <CCol md={4}>
-                    <CFormSwitch
-                      id="has_wifi"
-                      name="has_wifi"
-                      label={
-                        <span>
-                          <CIcon icon={cilWifi} className="me-2" />
-                          WiFi Available
-                        </span>
-                      }
-                      checked={formData.has_wifi}
-                      onChange={handleInputChange}
-                    />
-                  </CCol>
-                  <CCol md={4}>
-                    <CFormSwitch
-                      id="is_corner_booth"
-                      name="is_corner_booth"
-                      label={
-                        <span>
-                          <CIcon icon={cilLocationPin} className="me-2" />
-                          Corner Booth
-                        </span>
-                      }
-                      checked={formData.is_corner_booth}
-                      onChange={handleInputChange}
-                    />
+                    <CFormLabel>Booth Features</CFormLabel>
+                    <div className="d-flex gap-4 mt-2">
+                      <CFormCheck
+                        id="has_power"
+                        name="has_power"
+                        checked={formData.has_power}
+                        onChange={handleInputChange}
+                        disabled={isSubmitting}
+                        label={
+                          <span>
+                            <CIcon icon={cilLightbulb} className="me-2" />
+                            Power Available
+                          </span>
+                        }
+                      />
+                      <CFormCheck
+                        id="has_wifi"
+                        name="has_wifi"
+                        checked={formData.has_wifi}
+                        onChange={handleInputChange}
+                        disabled={isSubmitting}
+                        label={
+                          <span>
+                            <CIcon icon={cilWifiSignal4} className="me-2" />
+                            WiFi Available
+                          </span>
+                        }
+                      />
+                      <CFormCheck
+                        id="is_corner_booth"
+                        name="is_corner_booth"
+                        checked={formData.is_corner_booth}
+                        onChange={handleInputChange}
+                        disabled={isSubmitting}
+                        label={
+                          <span>
+                            <CIcon icon={cilLocationPin} className="me-2" />
+                            Corner Booth
+                          </span>
+                        }
+                      />
+                    </div>
                   </CCol>
                 </CRow>
 
@@ -414,7 +458,8 @@ const BoothForm = () => {
                       rows={4}
                       value={formData.notes}
                       onChange={handleInputChange}
-                      placeholder="Optional additional information about this booth (location benefits, restrictions, etc.)"
+                      placeholder="Optional additional information about this booth..."
+                      disabled={isSubmitting}
                     />
                   </CCol>
                 </CRow>
@@ -423,7 +468,7 @@ const BoothForm = () => {
                 <div className="d-flex justify-content-end gap-2">
                   <CButton 
                     color="secondary" 
-                    onClick={() => navigate('/booths')} 
+                    onClick={() => navigate('/dashboard/booths')} 
                     disabled={isSubmitting}
                   >
                     Cancel
@@ -436,12 +481,12 @@ const BoothForm = () => {
                     {isSubmitting ? (
                       <>
                         <CSpinner size="sm" className="me-2" />
-                        Saving...
+                        Updating...
                       </>
                     ) : (
                       <>
                         <CIcon icon={cilSave} className="me-2" />
-                        {isEdit ? 'Update Booth' : 'Create Booth'}
+                        Update Booth
                       </>
                     )}
                   </CButton>
@@ -455,4 +500,4 @@ const BoothForm = () => {
   )
 }
 
-export default BoothForm
+export default BoothEdit
