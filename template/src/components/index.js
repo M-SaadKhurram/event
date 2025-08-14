@@ -8,6 +8,7 @@ import DocsComponents from './DocsComponents'
 import DocsIcons from './DocsIcons'
 import DocsLink from './DocsLink'
 import DocsExample from './DocsExample'
+export { default as ErrorBoundary } from './ErrorBoundary'
 
 export {
   AppBreadcrumb,

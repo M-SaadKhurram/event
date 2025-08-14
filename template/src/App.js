@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 
 import { CSpinner, useColorModes } from '@coreui/react'
 import './scss/style.scss'
+import { ErrorBoundary } from './components'
+import { AuthProvider } from './context/AuthContext'
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
@@ -34,29 +36,33 @@ const App = () => {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <HashRouter>
-      <Suspense
-        fallback={
-          <div className="pt-3 text-center">
-            <CSpinner color="primary" variant="grow" />
-          </div>
-        }
-      >
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/*" element={<PublicLayout />} />
-          
-          {/* Auth Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/404" element={<Page404 />} />
-          <Route path="/500" element={<Page500 />} />
+    <ErrorBoundary>
+      <AuthProvider>
+        <HashRouter>
+          <Suspense
+            fallback={
+              <div className="pt-3 text-center">
+                <CSpinner color="primary" variant="grow" />
+              </div>
+            }
+          >
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/*" element={<PublicLayout />} />
+              
+              {/* Auth Routes */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/404" element={<Page404 />} />
+              <Route path="/500" element={<Page500 />} />
 
-          {/* Dashboard Routes */}
-          <Route path="/dashboard/*" element={<DefaultLayout />} />
-        </Routes>
-      </Suspense>
-    </HashRouter>
+              {/* Dashboard Routes */}
+              <Route path="/dashboard/*" element={<DefaultLayout />} />
+            </Routes>
+          </Suspense>
+        </HashRouter>
+      </AuthProvider>
+    </ErrorBoundary>
   )
 }
 

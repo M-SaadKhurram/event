@@ -12,63 +12,63 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(localStorage.getItem('token'))
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Check for existing auth data on app load
+    // Check if user is logged in on app start
     const storedToken = localStorage.getItem('token')
     const storedUser = localStorage.getItem('user')
-
+    
     if (storedToken && storedUser) {
       try {
-        const parsedUser = JSON.parse(storedUser)
         setToken(storedToken)
-        setUser(parsedUser)
+        setUser(JSON.parse(storedUser))
+        setIsAuthenticated(true)
       } catch (error) {
-        console.error('Error parsing stored user data:', error)
-        logout()
+        console.error('Error parsing stored user:', error)
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
       }
     }
     setLoading(false)
   }, [])
 
-  const login = (userData, authToken) => {
-    localStorage.setItem('token', authToken)
-    localStorage.setItem('user', JSON.stringify(userData))
-    setToken(authToken)
+  const login = (userData, userToken) => {
     setUser(userData)
+    setToken(userToken)
+    setIsAuthenticated(true)
+    
+    // Store in localStorage
+    localStorage.setItem('token', userToken)
+    localStorage.setItem('user', JSON.stringify(userData))
   }
 
   const logout = () => {
+    setUser(null)
+    setToken(null)
+    setIsAuthenticated(false)
+    
+    // Remove from localStorage
     localStorage.removeItem('token')
     localStorage.removeItem('user')
-    setToken(null)
-    setUser(null)
-  }
-
-  const isAuthenticated = () => {
-    return !!token && !!user
-  }
-
-  const hasRole = (role) => {
-    return user?.role === role
-  }
-
-  const hasAnyRole = (roles) => {
-    return roles.includes(user?.role)
   }
 
   const value = {
     user,
     token,
+    isAuthenticated,
     loading,
     login,
-    logout,
-    isAuthenticated,
-    hasRole,
-    hasAnyRole,
+    logout
   }
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
+
+export default AuthContext
