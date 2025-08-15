@@ -64,7 +64,7 @@ const About = () => {
     <div style={{ backgroundColor: '#fff', overflow: 'hidden' }}>
       {/* Hero Section */}
       <div style={{ 
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg,  #8b0000 0%)',
         minHeight: '70vh',
         display: 'flex',
         alignItems: 'center',
@@ -89,16 +89,17 @@ const About = () => {
           <CRow className="align-items-center">
             <CCol lg={8} className="text-white">
               <CBadge 
-                color="light" 
+            
                 className="mb-3 px-3 py-1"
                 style={{ 
                   fontSize: '0.8rem',
                   fontWeight: '600',
-                  color: '#667eea',
+                  color: 'white',
                   borderRadius: '50px',
-                  background: 'rgba(255,255,255,0.95)',
+                  background: 'rgba(7, 150, 62, 0.95)',
                   backdropFilter: 'blur(10px)',
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                  marginTop: '1rem'
                 }}
               >
                 🌟 About EventSphere Management
@@ -114,14 +115,14 @@ const About = () => {
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
               }}>
-                Pioneering the Future of{' '}
+                Innovating the Future of{' '}
                 <span style={{ 
-                  background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                  background: 'linear-gradient(135deg, #0dbd28ff 0%, #da9826ff 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text'
                 }}>
-                  Expo Management
+                  Global Events
                 </span>
               </h1>
               
@@ -142,7 +143,8 @@ const About = () => {
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
                 gap: '1.5rem', 
-                maxWidth: '600px'
+                maxWidth: '630px',
+                marginBottom: '2rem'
               }}>
                 {[
                   { key: 'years', label: 'Years of Excellence', suffix: '+', icon: '🎯' },
@@ -161,7 +163,7 @@ const About = () => {
                     <div style={{ 
                       fontSize: '1.8rem', 
                       fontWeight: '700',
-                      background: 'linear-gradient(135deg, #fbbf24 0%, #ffffff 100%)',
+                      background: 'linear-gradient(135deg, #1bac33ff 0%, #ca9f42ff 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text'
@@ -183,15 +185,14 @@ const About = () => {
       <div style={{ padding: '5rem 0', background: '#fff' }}>
         <CContainer>
           <CRow className="justify-content-center">
-            <CCol lg={10}>
+            <CCol lg={9}>
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                 <CBadge 
-                  color="primary" 
                   className="mb-3 px-3 py-1"
                   style={{ 
                     fontSize: '0.9rem',
-                    backgroundColor: '#dbeafe',
-                    color: '#2563eb',
+                    backgroundColor: '#119e16ff',
+                    color: 'white',
                     borderRadius: '50px',
                     fontWeight: '600'
                   }}
@@ -204,12 +205,12 @@ const About = () => {
                   color: '#1e293b',
                   marginBottom: '1rem'
                 }}>
-                  The EventSphere Story
+                  Our EventSphere Chronicles
                 </h2>
               </div>
               
               <div style={{ 
-                background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+                background: 'linear-gradient(135deg, #3edf25ff 0%, #b2b87dff 100%)',
                 borderRadius: '20px',
                 padding: '3rem',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
@@ -220,11 +221,7 @@ const About = () => {
                   color: '#374151',
                   marginBottom: '1.5rem'
                 }}>
-                  Founded in 2014, EventSphere Management emerged from a simple observation: 
-                  the expo and trade show industry was struggling with outdated processes 
-                  that created friction for everyone involved. Our founders, seasoned 
-                  professionals in event management and technology, envisioned a world 
-                  where organizing large-scale events would be seamless, efficient, and enjoyable.
+                  Founded in 2022, EventSphere Management was created to transform the way expos and trade shows are conceived, planned, and experienced. Our founders recognized a clear gap in the industry — outdated processes and disconnected tools that slowed organizers, frustrated exhibitors, and left attendees wanting more. From day one, our mission has been to eliminate these barriers and set a new benchmark for efficiency, innovation, and engagement.
                 </p>
                 
                 <p style={{ 
@@ -233,10 +230,7 @@ const About = () => {
                   color: '#374151',
                   marginBottom: '1.5rem'
                 }}>
-                  What started as a small team of passionate innovators has grown into a 
-                  global leader in expo management solutions. We've successfully managed 
-                  over 500 major trade shows and exhibitions across 25 countries, 
-                  connecting millions of professionals and facilitating billions in business transactions.
+                  In just a short span, we have grown from a passionate startup into a trusted partner for event organizers worldwide. Our team has successfully powered high-impact trade shows and exhibitions across diverse industries, connecting professionals, fostering collaboration, and unlocking new business opportunities on a global scale.
                 </p>
                 
                 <p style={{ 
@@ -244,10 +238,16 @@ const About = () => {
                   lineHeight: 1.7, 
                   color: '#374151'
                 }}>
-                  Today, EventSphere continues to push the boundaries of what's possible 
-                  in event management, leveraging cutting-edge technology, data analytics, 
-                  and user experience design to create memorable experiences that drive 
-                  meaningful business outcomes.
+                  Today, EventSphere stands at the forefront of event technology and management innovation. We integrate advanced digital solutions, real-time analytics, and human-centered design to create experiences that are seamless, memorable, and results-driven — shaping the future of how the world connects through events.
+
+                </p>
+
+                <p style={{ 
+                  fontSize: '1.1rem', 
+                  lineHeight: 1.7, 
+                  color: '#374151'
+                }}>
+                  Looking ahead, our commitment is clear: to continue redefining what’s possible in the world of expos. By embracing emerging technologies, nurturing global partnerships, and placing people at the heart of every event, EventSphere is not just keeping pace with the future — we’re building it
                 </p>
               </div>
             </CCol>
@@ -270,7 +270,7 @@ const About = () => {
             }}>
               Our Core{' '}
               <span style={{ 
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #901a1aff 0%, #d850a0ff 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -284,43 +284,43 @@ const About = () => {
             {[
               {
                 icon: cilLightbulb,
-                title: 'Innovation First',
-                description: 'We constantly push boundaries to create cutting-edge solutions that redefine industry standards.',
+                title: 'Vision-Driven Innovation',
+                description: 'We design forward-thinking solutions that set new trends and inspire the future of event management.',
                 color: '#f59e0b',
                 emoji: '💡'
               },
               {
                 icon: cilHeart,
-                title: 'Client-Centric Approach',
-                description: 'Every decision we make is guided by our commitment to delivering exceptional value to our clients.',
+                title: 'People First',
+                description: 'Our priority is creating value and memorable experiences for everyone — organizers, exhibitors, and attendees.',
                 color: '#ef4444',
                 emoji: '❤️'
               },
               {
                 icon: cilShieldAlt,
-                title: 'Reliability & Trust',
-                description: 'We build lasting partnerships through consistent delivery and unwavering commitment to excellence.',
+                title: 'Trusted Excellence',
+                description: 'We uphold integrity and reliability in every partnership, delivering results that exceed expectations.',
                 color: '#10b981',
                 emoji: '🛡️'
               },
               {
                 icon: cilGlobeAlt,
-                title: 'Global Impact',
-                description: 'We connect people and businesses worldwide, fostering international collaboration and growth.',
+                title: 'Global Connections',
+                description: 'We unite people, brands, and ideas across borders to foster growth and collaboration worldwide.',
                 color: '#3b82f6',
                 emoji: '🌍'
               },
               {
                 icon: cilSpeedometer,
-                title: 'Continuous Growth',
-                description: 'We embrace change and continuously evolve to meet the dynamic needs of our industry.',
+                title: 'Agile Growth',
+                description: 'We adapt quickly to industry shifts, turning challenges into opportunities for progress.',
                 color: '#8b5cf6',
                 emoji: '🚀'
               },
               {
                 icon: cilStar,
-                title: 'Excellence Standards',
-                description: 'We maintain the highest quality standards in everything we do, from technology to customer service.',
+                title: 'Pursuit of Perfection',
+                description: 'We aim for excellence in every detail, from our technology to our customer support.',
                 color: '#06b6d4',
                 emoji: '🏆'
               }
@@ -337,7 +337,7 @@ const About = () => {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-6px)'
-                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.15)'
+                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(195, 65, 65, 1)'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)'
@@ -398,7 +398,7 @@ const About = () => {
               style={{ 
                 fontSize: '0.9rem',
                 backgroundColor: '#dcfce7',
-                color: '#16a34a',
+                color: 'white',
                 borderRadius: '50px',
                 fontWeight: '600'
               }}
@@ -411,9 +411,9 @@ const About = () => {
               color: '#1e293b',
               marginBottom: '1rem'
             }}>
-              Meet the Experts Behind{' '}
+              Meet the Team Behind{' '}
               <span style={{ 
-                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                background: 'linear-gradient(135deg, #4f9325ff 0%, #c79b17ff 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -427,39 +427,38 @@ const About = () => {
               maxWidth: '600px', 
               margin: '0 auto'
             }}>
-              Our diverse team of industry experts, technologists, and innovators 
-              work together to deliver exceptional expo management solutions.
+              At EventSphere, collaboration fuels our success — uniting industry veterans, technology pioneers, and creative minds to shape the future of expo and trade show management.
             </p>
           </div>
           
           <CRow>
             {[
               {
-                name: 'Sarah Johnson',
+                name: 'Sakina Khan',
                 role: 'Chief Executive Officer',
-                description: '15+ years in event management with expertise in scaling global operations.',
+                description: 'Visionary leader driving EventSphere’s strategic growth and shaping the future of global expo management.',
                 image: '👩‍💼',
                 color: '#667eea'
               },
               {
-                name: 'Michael Chen',
+                name: 'Saad Khurram',
                 role: 'Chief Technology Officer',
-                description: 'Technology visionary with a track record of building enterprise-scale platforms.',
+                description: 'Architect of cutting-edge event technologies, leading innovation and digital transformation initiatives.',
                 image: '👨‍💻',
                 color: '#f59e0b'
               },
               {
-                name: 'Emma Rodriguez',
+                name: 'Yazdan Khan',
                 role: 'VP of Client Success',
-                description: 'Passionate about delivering exceptional client experiences and driving success.',
-                image: '👩‍🚀',
+                description: 'Dedicated to delivering exceptional client experiences and building long-term partnerships worldwide.',
+                image: '🤝',
                 color: '#10b981'
               },
               {
-                name: 'David Kim',
+                name: 'Zubair Khan',
                 role: 'Head of Innovation',
-                description: 'Leading our R&D efforts to pioneer next-generation event technologies.',
-                image: '👨‍🔬',
+                description: 'Pioneering next-generation event solutions through research, creativity, and forward-thinking strategies.',
+                image: '🚀',
                 color: '#8b5cf6'
               }
             ].map((member, index) => (
@@ -533,7 +532,7 @@ const About = () => {
 
       {/* CTA Section */}
       <div style={{ 
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background:'linear-gradient(135deg,  #8b0000 0%)',
         padding: '5rem 0'
       }}>
         <CContainer>
@@ -547,7 +546,7 @@ const About = () => {
               }}>
                 Ready to{' '}
                 <span style={{ 
-                  background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                  background: 'linear-gradient(135deg, #3ee847ff 0%, #ce9415ff 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text'
@@ -577,13 +576,21 @@ const About = () => {
                   to="/contact" 
                   size="lg"
                   style={{ 
-                    background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                    background: 'linear-gradient(135deg, #14ab17ff 0%, #d8821fff 100%)',
                     border: 'none',
                     padding: '16px 32px',
                     fontSize: '1rem',
                     fontWeight: '600',
                     borderRadius: '12px',
                     boxShadow: '0 8px 20px rgba(245,158,11,0.4)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateY(-2px) scale(1.02)'
+                    e.target.style.boxShadow = '0 12px 30px rgba(245,158,11,0.6)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0) scale(1)'
+                    e.target.style.boxShadow = '0 8px 20px rgba(245,158,11,0.4)'
                   }}
                 >
                   🤝 Get in Touch
@@ -602,6 +609,16 @@ const About = () => {
                     borderRadius: '12px',
                     backgroundColor: 'rgba(255,255,255,0.1)',
                     backdropFilter: 'blur(15px)'
+                  }}
+                   onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = 'rgba(255,255,255,0.2)'
+                    e.target.style.borderColor = 'rgba(255,255,255,0.6)'
+                    e.target.style.transform = 'translateY(-2px)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'
+                    e.target.style.borderColor = 'rgba(255,255,255,0.4)'
+                    e.target.style.transform = 'translateY(0)'
                   }}
                 >
                   🚀 Start Today

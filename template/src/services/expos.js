@@ -22,13 +22,19 @@ export const getExpo = async (id) => {
 
 export const createExpo = async (data) => {
   try {
-    const response = await api.post('/expos', data)
-    return response.data
+    console.log('Creating expo with data:', data);
+    const response = await api.post('/expos', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
   } catch (error) {
-    console.error('Error creating expo:', error)
-    throw error
+    console.error('Error creating expo:', error);
+    throw error;
   }
 }
+
 
 export const updateExpo = async (id, data) => {
   try {
