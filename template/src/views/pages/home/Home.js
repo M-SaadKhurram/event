@@ -7,7 +7,8 @@ import {
   CButton,
   CContainer,
   CBadge,
-  CProgress
+  CProgress,
+  CSpinner
 } from '@coreui/react'
 import { Link } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
@@ -26,6 +27,7 @@ import {
   cilGlobeAlt,
   cilLightbulb
 } from '@coreui/icons'
+import { getExpos } from '../../../services/expos'
 
 const Home = () => {
   const [animatedNumbers, setAnimatedNumbers] = useState({
@@ -34,6 +36,8 @@ const Home = () => {
     exhibitors: 0,
     success: 0
   })
+  const [upcomingExpos, setUpcomingExpos] = useState([])
+  const [loadingExpos, setLoadingExpos] = useState(true)
 
   // Animate numbers on component mount
   useEffect(() => {
@@ -60,8 +64,75 @@ const Home = () => {
     return () => clearTimeout(timer)
   }, [])
 
+  // Fetch upcoming expos
+  useEffect(() => {
+    fetchUpcomingExpos()
+  }, [])
+
+  const fetchUpcomingExpos = async () => {
+    try {
+      setLoadingExpos(true)
+      const data = await getExpos()
+      
+      // Filter upcoming and ongoing expos and limit to 6
+      const upcoming = data
+        .filter(expo => expo.status === 'upcoming' || expo.status === 'ongoing')
+        .sort((a, b) => new Date(a.date) - new Date(b.date))
+        .slice(0, 6)
+      
+      setUpcomingExpos(upcoming)
+    } catch (error) {
+      console.error('Error fetching expos:', error)
+    } finally {
+      setLoadingExpos(false)
+    }
+  }
+
+  // Function to get category and color based on expo theme or title
+  const getExpoCategory = (expo) => {
+    const title = expo.title.toLowerCase()
+    const theme = expo.theme?.toLowerCase() || ''
+    
+    if (title.includes('tech') || theme.includes('tech') || title.includes('innovation')) {
+      return { category: 'Technology', color: '#2563eb', image: '🌐' }
+    } else if (title.includes('health') || theme.includes('health') || title.includes('medical')) {
+      return { category: 'Healthcare', color: '#059669', image: '🏥' }
+    } else if (title.includes('food') || theme.includes('food') || title.includes('beverage')) {
+      return { category: 'Food & Beverage', color: '#7c3aed', image: '🍽️' }
+    } else if (title.includes('fashion') || theme.includes('fashion') || title.includes('lifestyle')) {
+      return { category: 'Fashion', color: '#ea580c', image: '👗' }
+    } else if (title.includes('auto') || theme.includes('auto') || title.includes('car')) {
+      return { category: 'Automotive', color: '#0891b2', image: '🚗' }
+    } else if (title.includes('manufacturing') || theme.includes('manufacturing') || title.includes('industrial')) {
+      return { category: 'Manufacturing', color: '#dc2626', image: '🏭' }
+    } else {
+      return { category: 'General', color: '#6b7280', image: '🎯' }
+    }
+  }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })
+  }
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'upcoming': return '#3b82f6'
+      case 'ongoing': return '#10b981'
+      case 'completed': return '#6b7280'
+      case 'cancelled': return '#ef4444'
+      default: return '#6b7280'
+    }
+  }
+
   return (
     <div style={{ backgroundColor: '#fff', overflow: 'hidden' }}>
+      {/* Keep all existing sections unchanged until Upcoming Events */}
+      
       {/* Enhanced Hero Section */}
       <div style={{ 
         background: 'linear-gradient(135deg,  #8b0000 0%)',
@@ -71,6 +142,7 @@ const Home = () => {
         position: 'relative',
         overflow: 'hidden'
       }}>
+        {/* ... keep all existing hero content ... */}
         {/* Animated Background Elements */}
         <div style={{
           position: 'absolute',
@@ -627,7 +699,7 @@ const Home = () => {
         </CContainer>
       </div>
 
-      {/* Upcoming Events Section */}
+      {/* UPDATED: Dynamic Upcoming Events Section */}
       <div style={{ padding: '5rem 0', background: '#fff', position: 'relative' }}>
         <div style={{
           position: 'absolute',
@@ -686,209 +758,183 @@ const Home = () => {
             </p>
           </div>
           
-          <CRow>
-            {[
-              {
-                title: 'TechExpo 2024',
-                date: 'March 15-17, 2024',
-                location: 'Dubai World Trade Centre',
-                attendees: '25,000+',
-                exhibitors: '500+',
-                status: 'Registration Open',
-                color: '#2563eb',
-                bgColor: 'linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%)',
-                category: 'Technology',
-                image: '🌐'
-              },
-              {
-                title: 'Healthcare Innovation Summit',
-                date: 'April 22-24, 2024',
-                location: 'Singapore Expo',
-                attendees: '15,000+',
-                exhibitors: '300+',
-                status: 'Early Bird',
-                color: '#059669',
-                bgColor: 'linear-gradient(135deg, #d1fae5 0%, #dbeafe 100%)',
-                category: 'Healthcare',
-                image: '🏥'
-              },
-              {
-                title: 'Global Manufacturing Expo',
-                date: 'May 10-12, 2024',
-                location: 'ExCeL London',
-                attendees: '30,000+',
-                exhibitors: '600+',
-                status: 'Almost Full',
-                color: '#dc2626',
-                bgColor: 'linear-gradient(135deg, #fee2e2 0%, #fef3c7 100%)',
-                category: 'Manufacturing',
-                image: '🏭'
-              },
-              {
-                title: 'Food & Beverage Showcase',
-                date: 'June 5-7, 2024',
-                location: 'Las Vegas Convention Center',
-                attendees: '20,000+',
-                exhibitors: '400+',
-                status: 'Planning Phase',
-                color: '#7c3aed',
-                bgColor: 'linear-gradient(135deg, #ede9fe 0%, #fce7f3 100%)',
-                category: 'Food & Beverage',
-                image: '🍽️'
-              },
-              {
-                title: 'Fashion Week International',
-                date: 'July 18-21, 2024',
-                location: 'Milan Convention Centre',
-                attendees: '18,000+',
-                exhibitors: '250+',
-                status: 'Coming Soon',
-                color: '#ea580c',
-                bgColor: 'linear-gradient(135deg, #fed7aa 0%, #fde68a 100%)',
-                category: 'Fashion',
-                image: '👗'
-              },
-              {
-                title: 'Auto Expo 2024',
-                date: 'August 12-15, 2024',
-                location: 'Detroit Cobo Center',
-                attendees: '40,000+',
-                exhibitors: '800+',
-                status: 'Registration Open',
-                color: '#0891b2',
-                bgColor: 'linear-gradient(135deg, #cffafe 0%, #e0f2fe 100%)',
-                category: 'Automotive',
-                image: '🚗'
-              }
-            ].map((event, index) => (
-              <CCol lg={4} md={6} className="mb-4" key={index}>
-                <CCard style={{ 
-                  border: 'none',
-                  borderRadius: '18px',
-                  height: '100%',
-                  background: event.bgColor,
-                  boxShadow: '0 6px 25px rgba(0,0,0,0.06)',
-                  transition: 'all 0.3s ease',
-                  position: 'relative',
-                  overflow: 'hidden'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)'
-                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.12)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 6px 25px rgba(0,0,0,0.06)'
-                }}>
-                  <div style={{
-                    position: 'absolute',
-                    top: '-20px',
-                    right: '-20px',
-                    width: '60px',
-                    height: '60px',
-                    background: `${event.color}15`,
-                    borderRadius: '50%'
-                  }}></div>
-                  
-                  <CCardBody style={{ padding: '1.8rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                      <div style={{ fontSize: '2.5rem' }}>{event.image}</div>
-                      <CBadge 
-                        style={{ 
-                          background: event.color,
-                          color: 'white',
-                          fontSize: '0.7rem',
-                          padding: '0.3rem 0.7rem',
-                          borderRadius: '12px',
-                          fontWeight: '600'
-                        }}
-                      >
-                        {event.status}
-                      </CBadge>
-                    </div>
-                    
-                    <h5 style={{ 
-                      fontWeight: '700', 
-                      color: '#1e293b',
-                      marginBottom: '0.8rem',
-                      fontSize: '1.1rem'
+          {loadingExpos ? (
+            <div style={{ textAlign: 'center', padding: '3rem 0' }}>
+              <CSpinner color="primary" size="lg" />
+              <p style={{ marginTop: '1rem', color: '#64748b' }}>Loading upcoming events...</p>
+            </div>
+          ) : upcomingExpos.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '3rem 0' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📅</div>
+              <h4 style={{ color: '#64748b', marginBottom: '1rem' }}>No Upcoming Events</h4>
+              <p style={{ color: '#94a3b8' }}>Check back soon for new exciting events!</p>
+            </div>
+          ) : (
+            <CRow>
+              {upcomingExpos.map((expo) => {
+                const { category, color, image } = getExpoCategory(expo)
+                const bgColor = `linear-gradient(135deg, ${color}15 0%, ${color}08 100%)`
+                
+                return (
+                  <CCol lg={4} md={6} className="mb-4" key={expo._id}>
+                    <CCard style={{ 
+                      border: 'none',
+                      borderRadius: '18px',
+                      height: '100%',
+                      background: bgColor,
+                      boxShadow: '0 6px 25px rgba(0,0,0,0.06)',
+                      transition: 'all 0.3s ease',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-6px)'
+                      e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.12)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = '0 6px 25px rgba(0,0,0,0.06)'
                     }}>
-                      {event.title}
-                    </h5>
-                    
-                    <div style={{ marginBottom: '1rem' }}>
-                      <div style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        marginBottom: '0.4rem',
-                        fontSize: '0.85rem',
-                        color: '#64748b'
-                      }}>
-                        <CIcon icon={cilCalendar} style={{ marginRight: '0.5rem', fontSize: '0.9rem' }} />
-                        {event.date}
-                      </div>
-                      <div style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        marginBottom: '0.4rem',
-                        fontSize: '0.85rem',
-                        color: '#64748b'
-                      }}>
-                        <CIcon icon={cilLocationPin} style={{ marginRight: '0.5rem', fontSize: '0.9rem' }} />
-                        {event.location}
-                      </div>
-                    </div>
-                    
-                    <div style={{ 
-                      display: 'grid', 
-                      gridTemplateColumns: '1fr 1fr', 
-                      gap: '0.8rem',
-                      marginBottom: '1.2rem'
-                    }}>
-                      <div style={{ textAlign: 'center' }}>
-                        <div style={{ 
-                          fontSize: '1.2rem', 
-                          fontWeight: '700', 
-                          color: event.color 
-                        }}>
-                          {event.attendees}
+                      <div style={{
+                        position: 'absolute',
+                        top: '-20px',
+                        right: '-20px',
+                        width: '60px',
+                        height: '60px',
+                        background: `${color}15`,
+                        borderRadius: '50%'
+                      }}></div>
+                      
+                      <CCardBody style={{ padding: '1.8rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                          <div style={{ fontSize: '2.5rem' }}>{image}</div>
+                          <CBadge 
+                            style={{ 
+                              background: getStatusColor(expo.status),
+                              color: 'white',
+                              fontSize: '0.7rem',
+                              padding: '0.3rem 0.7rem',
+                              borderRadius: '12px',
+                              fontWeight: '600',
+                              textTransform: 'capitalize'
+                            }}
+                          >
+                            {expo.status}
+                          </CBadge>
                         </div>
-                        <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Attendees</div>
-                      </div>
-                      <div style={{ textAlign: 'center' }}>
-                        <div style={{ 
-                          fontSize: '1.2rem', 
+                        
+                        <h5 style={{ 
                           fontWeight: '700', 
-                          color: event.color 
+                          color: '#1e293b',
+                          marginBottom: '0.8rem',
+                          fontSize: '1.1rem'
                         }}>
-                          {event.exhibitors}
+                          {expo.title}
+                        </h5>
+                        
+                        {expo.theme && (
+                          <p style={{ 
+                            fontSize: '0.85rem',
+                            color: '#64748b',
+                            marginBottom: '1rem',
+                            fontStyle: 'italic'
+                          }}>
+                            Theme: {expo.theme}
+                          </p>
+                        )}
+                        
+                        <div style={{ marginBottom: '1rem' }}>
+                          <div style={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            marginBottom: '0.4rem',
+                            fontSize: '0.85rem',
+                            color: '#64748b'
+                          }}>
+                            <CIcon icon={cilCalendar} style={{ marginRight: '0.5rem', fontSize: '0.9rem' }} />
+                            {formatDate(expo.date)}
+                          </div>
+                          <div style={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            marginBottom: '0.4rem',
+                            fontSize: '0.85rem',
+                            color: '#64748b'
+                          }}>
+                            <CIcon icon={cilLocationPin} style={{ marginRight: '0.5rem', fontSize: '0.9rem' }} />
+                            {expo.location}
+                          </div>
                         </div>
-                        <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Exhibitors</div>
-                      </div>
-                    </div>
-                    
-                    <CButton 
-                      size="sm"
-                      style={{ 
-                        background: event.color,
-                        border: 'none',
-                        borderRadius: '10px',
-                        padding: '0.6rem 1.2rem',
-                        fontSize: '0.85rem',
-                        fontWeight: '600',
-                        width: '100%'
-                      }}
-                    >
-                      Learn More
-                    </CButton>
-                  </CCardBody>
-                </CCard>
-              </CCol>
-            ))}
-          </CRow>
+                        
+                        {expo.description && (
+                          <p style={{ 
+                            fontSize: '0.85rem', 
+                            color: '#64748b', 
+                            marginBottom: '1rem',
+                            lineHeight: 1.5
+                          }}>
+                            {expo.description.length > 80 
+                              ? `${expo.description.substring(0, 80)}...` 
+                              : expo.description
+                            }
+                          </p>
+                        )}
+                        
+                        <div style={{ 
+                          display: 'grid', 
+                          gridTemplateColumns: '1fr 1fr', 
+                          gap: '0.8rem',
+                          marginBottom: '1.2rem'
+                        }}>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{ 
+                              fontSize: '1.2rem', 
+                              fontWeight: '700', 
+                              color: color 
+                            }}>
+                              {expo.floors}
+                            </div>
+                            <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Floors</div>
+                          </div>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{ 
+                              fontSize: '1rem', 
+                              fontWeight: '700', 
+                              color: color 
+                            }}>
+                              {category}
+                            </div>
+                            <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Category</div>
+                          </div>
+                        </div>
+                        
+                        <CButton 
+                          as={Link}
+                          to={`/expo/${expo._id}`}
+                          size="sm"
+                          style={{ 
+                            background: color,
+                            border: 'none',
+                            borderRadius: '10px',
+                            padding: '0.6rem 1.2rem',
+                            fontSize: '0.85rem',
+                            fontWeight: '600',
+                            width: '100%'
+                          }}
+                        >
+                          Learn More
+                        </CButton>
+                      </CCardBody>
+                    </CCard>
+                  </CCol>
+                )
+              })}
+            </CRow>
+          )}
         </CContainer>
       </div>
 
+      {/* Keep all remaining sections unchanged */}
       {/* Enhanced Industry Focus Section */}
       <div style={{ 
         background: 'linear-gradient(135deg, #850505ff 0%, #1f2e43ff 100%)',

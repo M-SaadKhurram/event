@@ -9,7 +9,7 @@ const Home = React.lazy(() => import('../views/pages/home/Home'))
 const About = React.lazy(() => import('../views/pages/home/About'))
 const Contact = React.lazy(() => import('../views/pages/home/Contact'))
 const Feedback = React.lazy(() => import('../views/pages/home/Feedback'))
-
+const ExpoDetail= React.lazy(() => import('../views/pages/expo/ExpoDetail'))
 const PublicLayout = () => {
   return (
     <div>
@@ -27,6 +27,8 @@ const PublicLayout = () => {
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="feedback" element={<Feedback />} />
+            <Route path="expo/:id" element={<ExpoDetail />} />
+            {/* Add more public routes as needed */}
           </Routes>
         </Suspense>
       </main>
