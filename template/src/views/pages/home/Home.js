@@ -64,7 +64,7 @@ const Home = () => {
     <div style={{ backgroundColor: '#fff', overflow: 'hidden' }}>
       {/* Enhanced Hero Section */}
       <div style={{ 
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg,  #8b0000 0%)',
         minHeight: 'calc(100vh - 70px)',
         display: 'flex',
         alignItems: 'center',
@@ -115,14 +115,14 @@ const Home = () => {
             <CCol lg={6} className="text-white">
               <div style={{ marginBottom: '1.5rem' }}>
                 <CBadge 
-                  color="light" 
+                 
                   className="mb-3 px-3 py-1"
                   style={{ 
                     fontSize: '0.8rem',
                     fontWeight: '600',
-                    color: '#667eea',
+                    color: 'white',
                     borderRadius: '50px',
-                    background: 'rgba(255,255,255,0.95)',
+                    background: 'rgba(7, 150, 62, 0.95)',
                     backdropFilter: 'blur(10px)',
                     boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
                     border: '1px solid rgba(255,255,255,0.2)'
@@ -132,7 +132,7 @@ const Home = () => {
                 </CBadge>
               </div>
               
-              <h1 style={{ 
+              <h1 style={{  
                 fontSize: 'clamp(2rem, 4vw, 3.5rem)',
                 fontWeight: '800', 
                 lineHeight: '1.2',
@@ -143,15 +143,15 @@ const Home = () => {
                 backgroundClip: 'text',
                 textShadow: '0 2px 4px rgba(0,0,0,0.1)'
               }}>
-                Revolutionize Your{' '}
+                The Era{' '}
                 <span style={{ 
-                  background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                  background: 'linear-gradient(135deg, #3CB371 0%, #d97706 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                   position: 'relative'
                 }}>
-                  Trade Shows
+                  Where You Can
                   <div style={{
                     position: 'absolute',
                     bottom: '-3px',
@@ -162,7 +162,7 @@ const Home = () => {
                     borderRadius: '1px'
                   }}></div>
                 </span>{' '}
-                & Large-Scale Expos
+                Connect Globally
               </h1>
               
               <p style={{ 
@@ -173,9 +173,7 @@ const Home = () => {
                 maxWidth: '600px',
                 textShadow: '0 1px 2px rgba(0,0,0,0.1)'
               }}>
-                Transform traditional expo management with our cutting-edge platform. 
-                Eliminate manual processes, streamline communication, and deliver 
-                real-time insights that drive success.
+                For businesses and professionals ready to make their mark on the world stage, EventSphere is your ultimate partner. We provide a cutting-edge platform that simplifies expo organization, enhances exhibitor visibility, and maximizes attendee engagement.
               </p>
               
               <div style={{ 
@@ -189,7 +187,7 @@ const Home = () => {
                   to="/register" 
                   size="lg"
                   style={{ 
-                    background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                    background: 'linear-gradient(135deg, #3CB371 0%, #d97706 100%)',
                     border: 'none',
                     padding: '14px 28px',
                     fontSize: '1rem',
@@ -482,12 +480,12 @@ const Home = () => {
         <CContainer style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <CBadge 
-              color="danger" 
+              color="success" 
               className="mb-3 px-3 py-1"
               style={{ 
                 fontSize: '0.9rem',
                 backgroundColor: '#fee2e2',
-                color: '#dc2626',
+                color: 'white',
                 borderRadius: '50px',
                 fontWeight: '600',
                 boxShadow: '0 2px 8px rgba(220,38,38,0.2)'
@@ -504,7 +502,7 @@ const Home = () => {
             }}>
               Traditional Expo Management{' '}
               <span style={{ 
-                background: 'linear-gradient(135deg, #dc2626 0%, #ea580c 100%)',
+                background: 'linear-gradient(135deg,  #8b0000 0%, #ea580c 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -519,8 +517,7 @@ const Home = () => {
               margin: '0 auto',
               lineHeight: 1.6
             }}>
-              EventSphere identified critical inefficiencies that cost the industry 
-              billions annually and frustrate stakeholders
+              EventSphere spotted major inefficiencies draining industry value.
             </p>
           </div>
           
@@ -529,24 +526,24 @@ const Home = () => {
               {
                 icon: cilCalendar,
                 title: 'Manual Registration Systems',
-                description: 'Time-consuming paper-based processes leading to 40% higher error rates and significant delays in attendee management',
-                color: '#dc2626',
+                description: 'Paper forms and spreadsheets slow down the process, cause errors, and create frustrating delays for attendees.',
+                color: '#3CB371',
                 stats: '40% Error Rate',
                 emoji: '📝'
               },
               {
                 icon: cilBullhorn,
                 title: 'Disjointed Communication',
-                description: 'Fragmented channels causing confusion, with 65% of exhibitors reporting communication issues during events',
-                color: '#ea580c',
+                description: 'Scattered updates across emails and calls lead to confusion, missed information, and poor coordination.',
+                color: '#3CB371',
                 stats: '65% Confusion Rate',
                 emoji: '📢'
               },
               {
                 icon: cilChart,
                 title: 'Limited Real-time Information',
-                description: 'Lack of live updates preventing 80% of organizers from making informed decisions during critical moments',
-                color: '#d97706',
+                description: 'No instant access to schedules, booth updates, or visitor stats makes quick decision-making nearly impossible.',
+                color: '#3CB371',
                 stats: '80% Blind Decisions',
                 emoji: '📊'
               }
@@ -584,7 +581,7 @@ const Home = () => {
                       marginBottom: '1.5rem',
                       position: 'relative'
                     }}>
-                      <CIcon icon={problem.icon} style={{ color: problem.color, fontSize: '1.5rem' }} />
+                      <CIcon icon={problem.icon} style={{ color: '#8b0000', fontSize: '1.5rem' }} />
                       <div style={{
                         position: 'absolute',
                         top: '-6px',
@@ -648,12 +645,12 @@ const Home = () => {
         <CContainer style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <CBadge 
-              color="primary" 
+              color="danger" 
               className="mb-3 px-3 py-1"
               style={{ 
                 fontSize: '0.9rem',
                 backgroundColor: '#dbeafe',
-                color: '#2563eb',
+                color: '#ffffffff',
                 borderRadius: '50px',
                 fontWeight: '600',
                 boxShadow: '0 2px 8px rgba(37,99,235,0.2)'
@@ -670,7 +667,7 @@ const Home = () => {
             }}>
               Join Our{' '}
               <span style={{ 
-                background: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
+                background: 'linear-gradient(135deg, #177140ff 0%, #df8b2aff 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -894,7 +891,7 @@ const Home = () => {
 
       {/* Enhanced Industry Focus Section */}
       <div style={{ 
-        background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+        background: 'linear-gradient(135deg, #850505ff 0%, #1f2e43ff 100%)',
         padding: '5rem 0',
         position: 'relative',
         overflow: 'hidden'
@@ -922,7 +919,7 @@ const Home = () => {
             }}>
               Serving Industries{' '}
               <span style={{ 
-                background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                background: 'linear-gradient(135deg, #08783aff 0%, #d97706 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -937,7 +934,7 @@ const Home = () => {
               margin: '0 auto',
               lineHeight: 1.6
             }}>
-              EventSphere Management leads large-scale expo transformation across diverse industries
+              EventSphere Management leads transformative expos for multiple industries
             </p>
           </div>
           
@@ -1004,7 +1001,7 @@ const Home = () => {
 
       {/* Enhanced CTA Section */}
       <div style={{ 
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background:'linear-gradient(135deg,  #8b0000 0%)',
         padding: '5rem 0',
         position: 'relative',
         overflow: 'hidden'
@@ -1035,7 +1032,7 @@ const Home = () => {
                 }}>
                   Ready to{' '}
                   <span style={{ 
-                    background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                    background: 'linear-gradient(135deg, #12b05cff 0%, #f59e0b 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text'
@@ -1052,8 +1049,7 @@ const Home = () => {
                   maxWidth: '700px',
                   margin: '0 auto 2.5rem'
                 }}>
-                  Join EventSphere Management and transform your traditional expo management 
-                  into a seamless, technology-driven experience that delights every stakeholder.
+                  Let EventSphere Management elevate your expo operations into a fully digital, hassle-free experience that engages and delights every participant.
                 </p>
               </div>
               
@@ -1069,7 +1065,7 @@ const Home = () => {
                   to="/register" 
                   size="lg"
                   style={{ 
-                    background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                    background: 'linear-gradient(135deg, #3CB371 0%, #d97706 100%)',
                     border: 'none',
                     padding: '16px 32px',
                     fontSize: '1rem',
@@ -1127,7 +1123,8 @@ const Home = () => {
                 justifyContent: 'center',
                 gap: '1.5rem',
                 flexWrap: 'wrap',
-                opacity: 0.8
+                opacity: 0.8,
+                
               }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: '1.2rem', marginBottom: '0.3rem' }}>🏆</div>

@@ -36,9 +36,9 @@ const PublicHeader = () => {
       position="sticky" 
       className="mb-0" 
       style={{ 
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg, #e00f0fff 0%, #9c2626 100%)',
         borderBottom: 'none',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)'
       }}
     >
       <CContainer fluid className="px-4">
@@ -76,7 +76,7 @@ const PublicHeader = () => {
                   as={Link}
                   to={item.path}
                   style={{
-                    color: isActive(item.path) ? '#fbbf24' : 'rgba(255,255,255,0.9)',
+                    color: isActive(item.path) ? '#37d137ff' : 'rgba(255,255,255,0.9)',
                     textDecoration: 'none',
                     padding: '0.75rem 1rem',
                     borderRadius: '8px',
@@ -90,7 +90,7 @@ const PublicHeader = () => {
                   onMouseEnter={(e) => {
                     if (!isActive(item.path)) {
                       e.target.style.background = 'rgba(255,255,255,0.1)'
-                      e.target.style.color = '#fbbf24'
+                      e.target.style.color = '#37d137ff'
                     }
                   }}
                   onMouseLeave={(e) => {
@@ -127,7 +127,7 @@ const PublicHeader = () => {
                 to="/register"
                 size="sm"
                 style={{
-                  background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                  background: 'linear-gradient(135deg, #32c63cff 0%, #d97706 100%)',
                   border: 'none',
                   color: 'white',
                   fontWeight: '600',
