@@ -16,6 +16,7 @@ import {
   cilGrid,
   cilPlus,
   cilCalendar,
+  cilClock,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -64,6 +65,25 @@ const _nav = [
         component: CNavItem,
         name: 'Create Booth',
         to: '/dashboard/booths/create',
+        icon: <CIcon icon={cilPlus} customClassName="nav-icon" />,
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Schedules',
+    to: '/dashboard/schedules',
+    icon: <CIcon icon={cilClock} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Schedules',
+        to: '/dashboard/schedules',
+      },
+      {
+        component: CNavItem,
+        name: 'Create Schedule',
+        to: '/dashboard/schedules/create',
         icon: <CIcon icon={cilPlus} customClassName="nav-icon" />,
       },
     ],
@@ -118,6 +138,7 @@ const _nav = [
           text: 'PRO',
         },
       },
+      
       {
         component: CNavItem,
         name: 'Cards',

@@ -60,6 +60,11 @@ const ExposList = React.lazy(() => import('./views/expos/index'))
 const ExpoCreate = React.lazy(() => import('./views/expos/Create'))
 const ExpoEdit = React.lazy(() => import('./views/expos/Edit'))
 
+// Schedule components
+const SchedulesList = React.lazy(() => import('./views/schedules/index'))
+const ScheduleCreate = React.lazy(() => import('./views/schedules/Create'))
+const ScheduleEdit = React.lazy(() => import('./views/schedules/Edit'))
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -115,6 +120,11 @@ const routes = [
   { path: '/expos', name: 'Expos', element: ExposList, exact: true },
   { path: '/expos/create', name: 'Create Expo', element: ExpoCreate },
   { path: '/expos/edit/:id', name: 'Edit Expo', element: ExpoEdit },
+  
+  // Schedule routes
+  { path: '/schedules', name: 'Schedules', element: SchedulesList, exact: true },
+  { path: '/schedules/create', name: 'Create Schedule', element: ScheduleCreate },
+  { path: '/schedules/edit/:id', name: 'Edit Schedule', element: ScheduleEdit },
 ]
 
 export default routes

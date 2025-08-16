@@ -22,13 +22,13 @@ export const getExpo = async (id) => {
 
 export const createExpo = async (data) => {
   try {
-    console.log('Creating expo with data:', data);
+    console.log('Creating expo with data:', data)
     const response = await api.post('/expos', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
-      },
-    });
-    return response.data;
+      }
+    })
+    return response.data
   } catch (error) {
     console.error('Error creating expo:', error);
     throw error;
@@ -65,6 +65,26 @@ export const getAvailableFloors = async (date) => {
     return response.data
   } catch (error) {
     console.error('Error fetching available floors:', error)
+    throw error
+  }
+}
+
+export const getSchedulesByExpo = async (expoId) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/schedules/expo/${expoId}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch schedules')
+    }
+    
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching schedules:', error)
     throw error
   }
 }
