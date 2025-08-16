@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ALLOWED_ROLES = ["Admin/Organizer", "Exhibitor", "Attendee"];
+const ALLOWED_ROLES = ["Admin", "Exhibitor", "Attendee"];
 
 const UserSchema = new Schema({
   name: {

@@ -1,10 +1,15 @@
 const mongoose = require('mongoose');
 
 const boothSchema = new mongoose.Schema({
-  // Primary key (Mongo automatically creates _id)
+  // Add expo relationship
+  expo_id: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Expo',
+    required: true 
+  },
   assigned_to: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'users', // references Exhibitor from User model
+    ref: 'Exhibitor', // changed from 'users' to 'Exhibitor'
     default: null 
   },
   floor: { 
@@ -56,7 +61,7 @@ const boothSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-// Ensure booth number is unique per floor
-boothSchema.index({ floor: 1, booth_number: 1 }, { unique: true });
+// Ensure booth number is unique per floor per expo
+boothSchema.index({ expo_id: 1, floor: 1, booth_number: 1 }, { unique: true });
 
 module.exports = mongoose.model('Booth', boothSchema);

@@ -38,7 +38,11 @@ export const createExpo = async (data) => {
 
 export const updateExpo = async (id, data) => {
   try {
-    const response = await api.put(`/expos/${id}`, data)
+    const response = await api.put(`/expos/${id}`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
+    })
     return response.data
   } catch (error) {
     console.error('Error updating expo:', error)

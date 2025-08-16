@@ -60,6 +60,15 @@ const ExposList = React.lazy(() => import('./views/expos/index'))
 const ExpoCreate = React.lazy(() => import('./views/expos/Create'))
 const ExpoEdit = React.lazy(() => import('./views/expos/Edit'))
 
+// Exhibitor components
+const ExhibitorsList = React.lazy(() => import('./views/exhibitor/index'))
+const ExhibitorCreate = React.lazy(() => import('./views/exhibitor/Create'))
+const ExhibitorEdit = React.lazy(() => import('./views/exhibitor/Edit'))
+
+// Attendee components
+const AttendeesList = React.lazy(() => import('./views/pages/attendee/index'))
+
+
 // Schedule components
 const SchedulesList = React.lazy(() => import('./views/schedules/index'))
 const ScheduleCreate = React.lazy(() => import('./views/schedules/Create'))
@@ -67,7 +76,7 @@ const ScheduleEdit = React.lazy(() => import('./views/schedules/Edit'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/', name: 'Dashboard', element: Dashboard },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
@@ -120,6 +129,15 @@ const routes = [
   { path: '/expos', name: 'Expos', element: ExposList, exact: true },
   { path: '/expos/create', name: 'Create Expo', element: ExpoCreate },
   { path: '/expos/edit/:id', name: 'Edit Expo', element: ExpoEdit },
+  
+  // Exhibitor routes
+  { path: '/exhibitor', name: 'Exhibitors', element: ExhibitorsList, exact: true },
+  { path: '/exhibitor/create', name: 'Create Exhibitor', element: ExhibitorCreate },
+  { path: '/exhibitor/edit/:id', name: 'Edit Exhibitor', element: ExhibitorEdit },
+  
+  // Attendee routes
+  { path: '/attendee', name: 'Attendees', element: AttendeesList, exact: true },
+
   
   // Schedule routes
   { path: '/schedules', name: 'Schedules', element: SchedulesList, exact: true },

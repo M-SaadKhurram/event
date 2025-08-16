@@ -14,10 +14,10 @@ router.post('/signup', signupValidation, signup); // Signup route
 router.post('/login', loginValidation, login);     // Login route
 
 // // Expo and Exhibitor routes with role-based access
-// // Only Admin/Organizer can create expos
+// // Only Admin can create expos
 // router.post('/expos', 
 //   ensureAuthenticated, 
-//   requireRole("Admin/Organizer"), 
+//   requireRole("Admin"), 
 //   createExpoHandler  // Assuming this is defined in your controller
 // );
 

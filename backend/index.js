@@ -19,6 +19,7 @@ const boothRoutes = require("./Routes/BoothRouter");
 const expoRoutes = require("./Routes/ExpoRouter");
 const exhibitorRoutes = require("./Routes/ExhibitorRouter");
 const scheduleRoutes = require("./Routes/ScheduleRouter");
+const attendeeRouter = require('./Routes/AttendeeRouter');
 
 app.use('/api/auth', AuthRouter);
 app.use('/products', ProductRouter);
@@ -26,6 +27,7 @@ app.use("/api/booths", boothRoutes);
 app.use("/api/expos", expoRoutes); 
 app.use("/api/exhibitors", exhibitorRoutes);
 app.use("/api/schedules", scheduleRoutes);
+app.use('/api/attendees', attendeeRouter);
 
 app.get('/ping', (req, res) => {
   res.send('PONG');

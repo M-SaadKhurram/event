@@ -79,7 +79,7 @@ const Register = () => {
     switch (role) {
       case 'Attendee': return '#10b981';
       case 'Exhibitor': return '#3b82f6';
-      case 'Admin/Organizer': return '#f59e0b';
+      case 'Admin': return '#f59e0b';
       default: return '#6b7280';
     }
   };
@@ -88,7 +88,7 @@ const Register = () => {
     switch (role) {
       case 'Attendee': return '👤';
       case 'Exhibitor': return '🏢';
-      case 'Admin/Organizer': return '👑';
+      case 'Admin': return '👑';
       default: return '👤';
     }
   };
