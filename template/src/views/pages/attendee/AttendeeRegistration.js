@@ -400,7 +400,8 @@ const AttendeeRegistration = () => {
                   borderRadius: '20px 20px 0 0',
                   fontWeight: '700',
                   fontSize: '1.2rem',
-                  padding: '1.5rem'
+                  padding: '1.5rem',
+                  color: '#1e293b',
                 }}>
                   <CIcon icon={cilCalendar} className="me-2" />
                   Event Details
@@ -530,7 +531,8 @@ const AttendeeRegistration = () => {
                     borderRadius: '15px',
                     padding: '2rem',
                     marginBottom: '2rem',
-                    border: '1px solid #e2e8f0'
+                    border: '1px solid #e2e8f0',
+                    color: '#1e293b'
                   }}>
                     <h5 style={{ fontWeight: '700', color: '#1e293b', marginBottom: '1rem' }}>
                       Registration Details
@@ -603,7 +605,8 @@ const AttendeeRegistration = () => {
                   borderRadius: '20px 20px 0 0',
                   fontWeight: '700',
                   fontSize: '1.3rem',
-                  padding: '2rem'
+                  padding: '2rem',
+                  color: '#1e293b'
                 }}>
                   <CIcon icon={cilUser} className="me-2" />
                   Attendee Registration Form

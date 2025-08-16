@@ -41,9 +41,12 @@ import {
   cilLocationPin,
   cilCalendar,
   cilPhone,
-  cilEnvelopeClosed
+  cilEnvelopeClosed,
+  cilCheckCircle,
+  cilClock,
+  cilXCircle
 } from '@coreui/icons'
-import { getExhibitors, deleteExhibitor } from '../../services/exhibitors'
+import { getExhibitors, deleteExhibitor, approveExhibitor } from '../../services/exhibitors'
 
 const ExhibitorIndex = () => {
   const navigate = useNavigate()
@@ -111,6 +114,15 @@ const ExhibitorIndex = () => {
     }
   }
 
+  const handleApprove = async (exhibitorId) => {
+    try {
+      await approveExhibitor(exhibitorId)
+      fetchExhibitors() // Refresh list after approval
+    } catch (err) {
+      setError('Failed to approve exhibitor')
+    }
+  }
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'approved':
@@ -121,6 +133,19 @@ const ExhibitorIndex = () => {
         return 'danger'
       default:
         return 'secondary'
+    }
+  }
+
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case 'approved':
+        return <CIcon icon={cilCheckCircle} style={{ color: '#22c55e', fontSize: '1.3em' }} />
+      case 'pending':
+        return <CIcon icon={cilClock} style={{ color: '#eab308', fontSize: '1.3em' }} />
+      case 'rejected':
+        return <CIcon icon={cilXCircle} style={{ color: '#ef4444', fontSize: '1.3em' }} />
+      default:
+        return <CBadge color="secondary">{status}</CBadge>
     }
   }
 
@@ -200,7 +225,7 @@ const ExhibitorIndex = () => {
               </div>
               <CButton
                 color="primary"
-                onClick={() => navigate('/exhibitor/create')}
+                onClick={() => navigate('/dashboard/exhibitor/create')}
               >
                 <CIcon icon={cilPlus} className="me-2" />
                 Add Exhibitor
@@ -342,15 +367,23 @@ const ExhibitorIndex = () => {
                         )}
                       </CTableDataCell>
                       <CTableDataCell>
-                        <CBadge color={getStatusColor(exhibitor.status)}>
-                          {exhibitor.status}
-                        </CBadge>
+                        {getStatusIcon(exhibitor.status)}
                       </CTableDataCell>
                       <CTableDataCell>
                         {formatDate(exhibitor.created_at)}
                       </CTableDataCell>
                       <CTableDataCell>
                         <div className="d-flex gap-2">
+                          {exhibitor.status === 'pending' && (
+                            <CButton
+                              color="success"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleApprove(exhibitor._id)}
+                            >
+                              <CIcon icon={cilCheckCircle} size="sm" /> 
+                            </CButton>
+                          )}
                           <CButton
                             color="info"
                             variant="outline"

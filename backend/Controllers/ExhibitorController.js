@@ -1,4 +1,5 @@
 const Exhibitor = require("../Models/Exhibitor");
+const Booth = require("../Models/Booth");
 
 // Create Exhibitor
 exports.createExhibitor = async (req, res) => {
@@ -57,3 +58,28 @@ exports.deleteExhibitor = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// Approve Exhibitor and assign booth
+exports.approveExhibitor = async (req, res) => {
+    try {
+        const exhibitorId = req.params.id
+        const exhibitor = await Exhibitor.findById(exhibitorId)
+        if (!exhibitor) return res.status(404).json({ message: "Exhibitor not found" })
+
+        // Update exhibitor status
+        exhibitor.status = "approved"
+        await exhibitor.save()
+
+        // Assign exhibitor to booth if booth_selection exists
+        if (exhibitor.booth_selection) {
+            await Booth.findByIdAndUpdate(
+                exhibitor.booth_selection,
+                { assigned_to: exhibitor._id }
+            )
+        }
+
+        res.status(200).json({ message: "Exhibitor approved and booth assigned", exhibitor })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}

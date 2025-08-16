@@ -31,8 +31,8 @@ import {
   cilLocationPin,
   cilCalendar,
 } from '@coreui/icons'
-import { getAttendeesByExpo } from '../../services/attendees'
-import { getExpos } from '../../services/expos'
+import { getAttendeesByExpo } from '../../../services/attendees'
+import { getExpos } from '../../../services/expos'
 
 const AttendeesList = () => {
   const navigate = useNavigate()
@@ -149,10 +149,7 @@ const AttendeesList = () => {
           <CCard>
             <CCardHeader className="d-flex justify-content-between align-items-center">
               <strong>Attendees Management</strong>
-              <CButton color="primary" onClick={handleRegister}>
-                <CIcon icon={cilPlus} className="me-2" />
-                Register Attendee
-              </CButton>
+             
             </CCardHeader>
             <CCardBody>
               {/* Filters */}

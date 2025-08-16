@@ -54,3 +54,13 @@ export const deleteExhibitor = async (id) => {
     throw error
   }
 }
+
+export const approveExhibitor = async (id) => {
+  try {
+    const response = await api.put(`/exhibitors/${id}/approve`)
+    return response.data
+  } catch (error) {
+    console.error('Error approving exhibitor:', error)
+    throw error
+  }
+}

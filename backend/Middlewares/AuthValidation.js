@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const ALLOWED_ROLES = ["Admin/Organizer", "Exhibitor", "Attendee"];
+const ALLOWED_ROLES = ["Admin", "Exhibitor", "Attendee"];
 
 const signupValidation = (req, res, next) => {
   const schema = Joi.object({

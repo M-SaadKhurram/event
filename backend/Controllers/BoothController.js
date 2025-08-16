@@ -1,5 +1,6 @@
 const Booth = require("../Models/Booth");
 const Expo = require("../Models/Expo");
+const Exhibitor = require("../Models/Exhibitor");
 
 // Create Booth - Only Admin
 exports.createBooth = async (req, res) => {
@@ -38,18 +39,35 @@ exports.createBooth = async (req, res) => {
 exports.getBooths = async (req, res) => {
   try {
     const { expo_id, floor, status } = req.query;
-    
     let filter = {};
     if (expo_id) filter.expo_id = expo_id;
     if (floor) filter.floor = parseInt(floor);
     if (status) filter.status = status;
 
+    // Find booths
     const booths = await Booth.find(filter)
-      .populate("assigned_to", "name email role")
+      .populate({
+        path: "assigned_to",
+        match: { status: "approved" }, // Only populate if exhibitor status is approved
+        select: "company_name contact_info status booth_selection product_description"
+      })
       .populate("expo_id", "title date location floors")
       .sort({ expo_id: 1, floor: 1, booth_number: 1 });
-    
-    res.json(booths);
+
+    // For each booth, if assigned_to is null, try to find exhibitor by booth_selection
+    const boothsWithExhibitor = await Promise.all(booths.map(async booth => {
+      if (!booth.assigned_to) {
+        // Find exhibitor with booth_selection = booth._id and status = approved
+        const exhibitor = await Exhibitor.findOne({
+          booth_selection: booth._id,
+          status: "approved"
+        }).select("company_name contact_info status booth_selection");
+        return { ...booth.toObject(), exhibitor };
+      }
+      return booth;
+    }));
+
+    res.json(boothsWithExhibitor);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -176,3 +194,5 @@ exports.deleteBooth = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+

@@ -187,7 +187,7 @@ const CreateExhibitor = () => {
       setSuccess('Exhibitor created successfully!')
       
       setTimeout(() => {
-        navigate('/exhibitor')
+        navigate('/dashboard/exhibitor')
       }, 2000)
 
     } catch (err) {
@@ -226,7 +226,7 @@ const CreateExhibitor = () => {
               <CButton
                 color="secondary"
                 variant="outline"
-                onClick={() => navigate('/exhibitor')}
+                onClick={() => navigate('/dashboard/exhibitor')}
               >
                 <CIcon icon={cilArrowLeft} className="me-2" />
                 Back to List
@@ -463,7 +463,7 @@ const CreateExhibitor = () => {
                 <CButton
                   type="button"
                   color="secondary"
-                  onClick={() => navigate('/exhibitor')}
+                  onClick={() => navigate('/dashboard/exhibitor')}
                 >
                   Cancel
                 </CButton>

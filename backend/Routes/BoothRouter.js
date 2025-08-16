@@ -7,7 +7,7 @@ const ensureAuthenticated = require("../Middlewares/Auth");
 router.post("/", ensureAuthenticated, BoothController.createBooth);
 
 // Get All Booths
-router.get("/", ensureAuthenticated, BoothController.getBooths);
+router.get("/", BoothController.getBooths);
 
 // Get Available Booths for specific Expo
 router.get("/expo/:expo_id/available", ensureAuthenticated, BoothController.getAvailableBoothsForExpo);

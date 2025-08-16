@@ -9,7 +9,7 @@ const boothSchema = new mongoose.Schema({
   },
   assigned_to: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'users', // references Exhibitor from User model
+    ref: 'Exhibitor', // changed from 'users' to 'Exhibitor'
     default: null 
   },
   floor: { 

@@ -1,5 +1,5 @@
-// Usage: requireRole("Admin/Organizer"), requireRole("Exhibitor"), requireRole("Attendee")
-// Or multiple: requireRole("Admin/Organizer", "Exhibitor")
+// Usage: requireRole("Admin"), requireRole("Exhibitor"), requireRole("Attendee")
+// Or multiple: requireRole("Admin", "Exhibitor")
 const requireRole = (...allowed) => {
   return (req, res, next) => {
     if (!req.user?.role) {
