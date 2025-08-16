@@ -352,15 +352,41 @@ const BoothEdit = () => {
                   </CCol>
                 </CRow>
 
-                {formData.length && formData.width && (
-                  <CRow className="mb-3">
-                    <CCol md={12}>
-                      <div className="alert alert-info">
-                        <strong>Total Area:</strong> {calculateArea()} {formData.size_unit}²
+                {/* Booth Details - Enhanced styling */}
+                <CRow className="mb-3">
+                  <CCol md={12}>
+                    <div className="mb-3 p-3 bg-primary bg-opacity-10 rounded">
+                      <h6 className="text-primary">Booth Details</h6>
+                      <div className="small">
+                        <div><strong>Booth Number:</strong> {formData.booth_number}</div>
+                        <div><strong>Floor:</strong> {formData.floor}</div>
+                        <div>
+                          <strong>Size:</strong> {formData.length} x {formData.width} {formData.size_unit}
+                        </div>
+                        <div>
+                          <strong>Total Area:</strong> {calculateArea()} {formData.size_unit}²
+                        </div>
+                        <div>
+                          <strong>Status:</strong> {formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}
+                        </div>
+                        <div>
+                          <strong>Price:</strong> ${formData.price}
+                        </div>
+                        <div>
+                          <strong>Features:</strong>
+                          {formData.has_power && <span className="ms-2 badge bg-info">Power</span>}
+                          {formData.has_wifi && <span className="ms-2 badge bg-info">WiFi</span>}
+                          {formData.is_corner_booth && <span className="ms-2 badge bg-warning text-dark">Corner</span>}
+                        </div>
+                        {formData.notes && (
+                          <div className="mt-2">
+                            <strong>Notes:</strong> {formData.notes}
+                          </div>
+                        )}
                       </div>
-                    </CCol>
-                  </CRow>
-                )}
+                    </div>
+                  </CCol>
+                </CRow>
 
                 <CRow className="mb-3">
                   <CCol md={6}>

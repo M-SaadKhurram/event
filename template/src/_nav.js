@@ -17,6 +17,9 @@ import {
   cilPlus,
   cilCalendar,
   cilClock,
+  cilHamburgerMenu,
+  cilBuilding,
+  
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -69,6 +72,7 @@ const _nav = [
       },
     ],
   },
+
   {
     component: CNavGroup,
     name: 'Schedules',
@@ -84,6 +88,39 @@ const _nav = [
         component: CNavItem,
         name: 'Create Schedule',
         to: '/dashboard/schedules/create',
+        icon: <CIcon icon={cilPlus} customClassName="nav-icon" />,
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Attendees',
+    to: '/dashboard/attendee',
+    icon: <CIcon icon={cilHamburgerMenu} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Attendees',
+        to: '/dashboard/attendee',
+      },
+    
+    ],
+  },
+   {
+    component: CNavGroup,
+    name: 'Exhibitors',
+    to: '/dashboard/exhibitor',
+    icon: <CIcon icon={cilBuilding} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Exhibitors',
+        to: '/dashboard/exhibitor',
+      },
+      {
+        component: CNavItem,
+        name: 'Create Exhibitor',
+        to: '/dashboard/exhibitor/create',
         icon: <CIcon icon={cilPlus} customClassName="nav-icon" />,
       },
     ],

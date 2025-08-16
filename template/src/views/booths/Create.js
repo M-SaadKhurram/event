@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   CCard,
@@ -16,21 +16,27 @@ import {
   CFormCheck,
   CInputGroup,
   CInputGroupText,
+  CBadge
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { 
   cilSave, 
   cilArrowLeft, 
   cilLightbulb,
-  cilLocationPin 
+  cilLocationPin,
+  cilCalendar
 } from '@coreui/icons'
 import { createBooth } from '../../services/booths'
+import { getExpos } from '../../services/expos'
 
 const BoothCreate = () => {
   const navigate = useNavigate()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [alert, setAlert] = useState({ show: false, message: '', color: '' })
+  const [expos, setExpos] = useState([])
+  const [selectedExpo, setSelectedExpo] = useState(null)
   const [formData, setFormData] = useState({
+    expo_id: '',
     booth_number: '',
     floor: 1,
     length: '',
@@ -44,6 +50,34 @@ const BoothCreate = () => {
     notes: '',
   })
   const [errors, setErrors] = useState({})
+
+  useEffect(() => {
+    fetchExpos()
+  }, [])
+
+  useEffect(() => {
+    if (formData.expo_id) {
+      const expo = expos.find(e => e._id === formData.expo_id)
+      setSelectedExpo(expo)
+      
+      // Reset floor if it exceeds expo's floor limit
+      if (expo && formData.floor > expo.floors) {
+        setFormData(prev => ({ ...prev, floor: 1 }))
+      }
+    } else {
+      setSelectedExpo(null)
+    }
+  }, [formData.expo_id, expos])
+
+  const fetchExpos = async () => {
+    try {
+      const data = await getExpos()
+      setExpos(data)
+    } catch (err) {
+      console.error('Error fetching expos:', err)
+      showAlert('Failed to load expos', 'danger')
+    }
+  }
 
   const showAlert = (message, color) => {
     setAlert({ show: true, message, color })
@@ -69,6 +103,10 @@ const BoothCreate = () => {
   const validateForm = () => {
     const newErrors = {}
     
+    if (!formData.expo_id) {
+      newErrors.expo_id = 'Please select an expo'
+    }
+    
     if (!formData.booth_number.trim()) {
       newErrors.booth_number = 'Booth number is required'
     }
@@ -83,6 +121,10 @@ const BoothCreate = () => {
     
     if (!formData.price || formData.price < 0) {
       newErrors.price = 'Price must be 0 or greater'
+    }
+
+    if (selectedExpo && formData.floor > selectedExpo.floors) {
+      newErrors.floor = `Floor cannot exceed ${selectedExpo.floors} for this expo`
     }
     
     setErrors(newErrors)
@@ -130,7 +172,7 @@ const BoothCreate = () => {
       } else if (error.response?.status === 401) {
         errorMessage = 'You are not authorized to create booths.'
       } else if (error.response?.status === 409) {
-        errorMessage = 'A booth with this number already exists on this floor.'
+        errorMessage = 'A booth with this number already exists on this floor for this expo.'
       }
       
       showAlert(errorMessage, 'danger')
@@ -144,6 +186,15 @@ const BoothCreate = () => {
       return (parseFloat(formData.length) * parseFloat(formData.width)).toFixed(2)
     }
     return '0'
+  }
+
+  const getAvailableFloors = () => {
+    if (!selectedExpo) return [1, 2, 3, 4]
+    const floors = []
+    for (let i = 1; i <= selectedExpo.floors; i++) {
+      floors.push(i)
+    }
+    return floors
   }
 
   return (
@@ -175,6 +226,54 @@ const BoothCreate = () => {
             </CCardHeader>
             <CCardBody>
               <CForm onSubmit={handleSubmit}>
+                {/* Expo Selection */}
+                <CRow className="mb-3">
+                  <CCol md={12}>
+                    <CFormLabel htmlFor="expo_id">Select Expo *</CFormLabel>
+                    <CFormSelect
+                      id="expo_id"
+                      name="expo_id"
+                      value={formData.expo_id}
+                      onChange={handleInputChange}
+                      invalid={!!errors.expo_id}
+                      disabled={isSubmitting}
+                    >
+                      <option value="">Choose an expo...</option>
+                      {expos.map((expo) => (
+                        <option key={expo._id} value={expo._id}>
+                          {expo.title} - {new Date(expo.date).toLocaleDateString()} ({expo.floors} floors)
+                        </option>
+                      ))}
+                    </CFormSelect>
+                    {errors.expo_id && (
+                      <div className="invalid-feedback">{errors.expo_id}</div>
+                    )}
+                  </CCol>
+                </CRow>
+
+                {/* Selected Expo Info - Enhanced styling */}
+                {selectedExpo && (
+                  <CRow className="mb-3">
+                    <CCol md={12}>
+                      <div className="mb-3 p-3 bg-primary bg-opacity-10 rounded">
+                        <h6 className="text-primary">Selected Expo Details</h6>
+                        <div className="small">
+                          <div><strong>Event:</strong> {selectedExpo.title}</div>
+                          <div>
+                            <strong>Date:</strong> {new Date(selectedExpo.date).toLocaleDateString('en-US', {
+                              weekday: 'long',
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
+                          </div>
+                          <div><strong>Floors:</strong> {selectedExpo.floors}</div>
+                                                  </div>
+                      </div>
+                    </CCol>
+                  </CRow>
+                )}
+
                 <CRow className="mb-3">
                   <CCol md={6}>
                     <CFormLabel htmlFor="booth_number">Booth Number *</CFormLabel>
@@ -199,13 +298,21 @@ const BoothCreate = () => {
                       name="floor"
                       value={formData.floor}
                       onChange={handleInputChange}
-                      disabled={isSubmitting}
+                      invalid={!!errors.floor}
+                      disabled={isSubmitting || !formData.expo_id}
                     >
-                      <option value={1}>Floor 1</option>
-                      <option value={2}>Floor 2</option>
-                      <option value={3}>Floor 3</option>
-                      <option value={4}>Floor 4</option>
+                      {getAvailableFloors().map(floor => (
+                        <option key={floor} value={floor}>Floor {floor}</option>
+                      ))}
                     </CFormSelect>
+                    {errors.floor && (
+                      <div className="invalid-feedback">{errors.floor}</div>
+                    )}
+                    {selectedExpo && (
+                      <small className="text-body-secondary">
+                        Maximum {selectedExpo.floors} floors available for this expo
+                      </small>
+                    )}
                   </CCol>
                 </CRow>
 
@@ -379,7 +486,7 @@ const BoothCreate = () => {
                       <CButton 
                         type="submit" 
                         color="primary" 
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || !formData.expo_id}
                       >
                         <CIcon icon={cilSave} className="me-2" />
                         {isSubmitting ? 'Creating...' : 'Create Booth'}

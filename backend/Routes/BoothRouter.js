@@ -3,11 +3,17 @@ const router = express.Router();
 const BoothController = require("../Controllers/BoothController");
 const ensureAuthenticated = require("../Middlewares/Auth");
 
-
+// Create Booth
 router.post("/", ensureAuthenticated, BoothController.createBooth);
 
 // Get All Booths
 router.get("/", ensureAuthenticated, BoothController.getBooths);
+
+// Get Available Booths for specific Expo
+router.get("/expo/:expo_id/available", ensureAuthenticated, BoothController.getAvailableBoothsForExpo);
+
+// Get Booths by Expo and Floor
+router.get("/expo/:expo_id/floor/:floor", ensureAuthenticated, BoothController.getBoothsByExpoAndFloor);
 
 // Get Booth by ID
 router.get("/:id", ensureAuthenticated, BoothController.getBoothById);

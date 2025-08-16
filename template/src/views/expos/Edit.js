@@ -15,6 +15,7 @@ import {
   CInputGroupText,
   CAlert,
   CSpinner,
+  CBadge
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { 
@@ -570,6 +571,38 @@ const ExpoEdit = () => {
                           <span>No Image Available</span>
                         </div>
                       )}
+                    </div>
+                  </CCol>
+                </CRow>
+
+                <CRow className="mb-3">
+                  <CCol md={12}>
+                    {/* Expo Details Section - Styled like booth details */}
+                    <div className="mb-3 p-3 bg-primary bg-opacity-10 rounded">
+                      <h6 className="text-primary">Expo Details</h6>
+                      <div className="small">
+                        <div><strong>Title:</strong> {formData.title}</div>
+                        <div><strong>Date:</strong> {formData.date ? new Date(formData.date).toLocaleDateString('en-US', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        }) : '-'}</div>
+                        <div><strong>Location:</strong> {formData.location}</div>
+                        <div><strong>Theme:</strong> {formData.theme}</div>
+                        <div><strong>Floors:</strong> {formData.floors}</div>
+                        <div>
+                          <strong>Status:</strong>
+                          <CBadge color={
+                            formData.status === 'upcoming' ? 'info' :
+                            formData.status === 'ongoing' ? 'success' :
+                            formData.status === 'completed' ? 'secondary' :
+                            formData.status === 'cancelled' ? 'danger' : 'secondary'
+                          } className="ms-1">
+                            {formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}
+                          </CBadge>
+                        </div>
+                      </div>
                     </div>
                   </CCol>
                 </CRow>
