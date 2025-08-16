@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { 
-  CRow, 
-  CCol, 
-  CCard, 
-  CCardBody, 
+import {
+  CRow,
+  CCol,
+  CCard,
+  CCardBody,
   CButton,
   CContainer,
   CBadge,
@@ -15,9 +15,9 @@ import {
   CAlert
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { 
-  cilPhone, 
-  cilEnvelopeOpen, 
+import {
+  cilPhone,
+  cilEnvelopeOpen,
   cilLocationPin,
   cilClock,
   cilUser,
@@ -47,7 +47,7 @@ const Contact = () => {
     console.log('Form submitted:', formData)
     setShowAlert(true)
     setTimeout(() => setShowAlert(false), 5000)
-    
+
     // Reset form
     setFormData({
       name: '',
@@ -63,8 +63,8 @@ const Contact = () => {
   return (
     <div style={{ backgroundColor: '#fff', overflow: 'hidden' }}>
       {/* Hero Section */}
-      <div style={{ 
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      <div style={{
+        background: 'linear-gradient(135deg,  #8b0000 0%)',
         minHeight: '60vh',
         display: 'flex',
         alignItems: 'center',
@@ -88,25 +88,24 @@ const Contact = () => {
         <CContainer style={{ position: 'relative', zIndex: 2 }}>
           <CRow className="justify-content-center text-center">
             <CCol lg={8} className="text-white">
-              <CBadge 
-                color="light" 
+              <CBadge
                 className="mb-3 px-3 py-1"
-                style={{ 
+                style={{
                   fontSize: '0.8rem',
                   fontWeight: '600',
-                  color: '#667eea',
+                  color: 'white',
                   borderRadius: '50px',
-                  background: 'rgba(255,255,255,0.95)',
+                  background: 'green',
                   backdropFilter: 'blur(10px)',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
                 }}
               >
                 📞 Contact EventSphere
               </CBadge>
-              
-              <h1 style={{ 
+
+              <h1 style={{
                 fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-                fontWeight: '800', 
+                fontWeight: '800',
                 lineHeight: '1.2',
                 marginBottom: '1.2rem',
                 background: 'linear-gradient(135deg, #fff 0%, #f8fafc 100%)',
@@ -115,8 +114,8 @@ const Contact = () => {
                 backgroundClip: 'text'
               }}>
                 Let's{' '}
-                <span style={{ 
-                  background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                <span style={{
+                  background: 'linear-gradient(135deg, #32ab14ff 0%, #f59e0b 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text'
@@ -125,8 +124,8 @@ const Contact = () => {
                 </span>{' '}
                 and Transform Your Events
               </h1>
-              
-              <p style={{ 
+
+              <p style={{
                 fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
                 opacity: 0.95,
                 lineHeight: 1.6,
@@ -134,8 +133,7 @@ const Contact = () => {
                 maxWidth: '600px',
                 margin: '0 auto 2rem'
               }}>
-                Ready to revolutionize your expo management? Our team of experts 
-                is here to help you create exceptional event experiences.
+                With EventSphere, every expo is crafted to be seamless, innovative, and unforgettable, ensuring your vision comes to life flawlessly.
               </p>
             </CCol>
           </CRow>
@@ -148,18 +146,19 @@ const Contact = () => {
           <CRow>
             {/* Contact Form */}
             <CCol lg={8} className="mb-4">
-              <CCard style={{ 
+              <CCard style={{
                 border: 'none',
                 borderRadius: '20px',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                minHeight: '820px'
               }}>
                 <div style={{
                   background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
                   padding: '2rem 2rem 1rem'
                 }}>
-                  <h3 style={{ 
-                    fontWeight: '700', 
+                  <h3 style={{
+                    fontWeight: '700',
                     color: '#1e293b',
                     marginBottom: '0.5rem',
                     display: 'flex',
@@ -173,14 +172,14 @@ const Contact = () => {
                     Fill out the form below and we'll get back to you within 24 hours.
                   </p>
                 </div>
-                
-                <CCardBody style={{ padding: '2rem' }}>
+
+                <CCardBody style={{ padding: '2rem', background: 'linear-gradient(135deg, #41e860ff 0%, #1dce46ff 100%)',}}>
                   {showAlert && (
                     <CAlert color="success" className="mb-4">
                       <strong>Success!</strong> Your message has been sent. We'll contact you soon!
                     </CAlert>
                   )}
-                  
+
                   <CForm onSubmit={handleSubmit}>
                     <CRow>
                       <CCol md={6} className="mb-3">
@@ -194,10 +193,10 @@ const Contact = () => {
                           onChange={handleInputChange}
                           placeholder="Enter your full name"
                           required
-                          style={{ 
+                          style={{
                             borderRadius: '10px',
                             border: '2px solid #e5e7eb',
-                            padding: '12px 16px'
+                            padding: '12px 16px',
                           }}
                         />
                       </CCol>
@@ -212,7 +211,7 @@ const Contact = () => {
                           onChange={handleInputChange}
                           placeholder="Enter your email"
                           required
-                          style={{ 
+                          style={{
                             borderRadius: '10px',
                             border: '2px solid #e5e7eb',
                             padding: '12px 16px'
@@ -220,7 +219,7 @@ const Contact = () => {
                         />
                       </CCol>
                     </CRow>
-                    
+
                     <CRow>
                       <CCol md={6} className="mb-3">
                         <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
@@ -232,7 +231,7 @@ const Contact = () => {
                           value={formData.company}
                           onChange={handleInputChange}
                           placeholder="Enter company name"
-                          style={{ 
+                          style={{
                             borderRadius: '10px',
                             border: '2px solid #e5e7eb',
                             padding: '12px 16px'
@@ -249,7 +248,7 @@ const Contact = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           placeholder="Enter phone number"
-                          style={{ 
+                          style={{
                             borderRadius: '10px',
                             border: '2px solid #e5e7eb',
                             padding: '12px 16px'
@@ -257,7 +256,7 @@ const Contact = () => {
                         />
                       </CCol>
                     </CRow>
-                    
+
                     <CRow>
                       <CCol md={6} className="mb-3">
                         <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
@@ -268,7 +267,7 @@ const Contact = () => {
                           value={formData.inquiryType}
                           onChange={handleInputChange}
                           required
-                          style={{ 
+                          style={{
                             borderRadius: '10px',
                             border: '2px solid #e5e7eb',
                             padding: '12px 16px'
@@ -294,7 +293,7 @@ const Contact = () => {
                           onChange={handleInputChange}
                           placeholder="Enter subject"
                           required
-                          style={{ 
+                          style={{
                             borderRadius: '10px',
                             border: '2px solid #e5e7eb',
                             padding: '12px 16px'
@@ -302,7 +301,7 @@ const Contact = () => {
                         />
                       </CCol>
                     </CRow>
-                    
+
                     <div className="mb-4">
                       <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
                         Message *
@@ -314,50 +313,53 @@ const Contact = () => {
                         rows={5}
                         placeholder="Tell us about your event requirements..."
                         required
-                        style={{ 
+                        style={{
                           borderRadius: '10px',
                           border: '2px solid #e5e7eb',
                           padding: '12px 16px'
                         }}
                       />
                     </div>
-                    
-                    <CButton 
-                      type="submit"
-                      size="lg"
-                      style={{ 
-                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                        border: 'none',
-                        padding: '14px 28px',
-                        fontSize: '1rem',
-                        fontWeight: '600',
-                        borderRadius: '12px',
-                        boxShadow: '0 8px 20px rgba(102,126,234,0.4)',
-                        width: '100%'
-                      }}
-                    >
-                      🚀 Send Message
-                    </CButton>
+
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <CButton
+                        type="submit"
+                        size="lg"
+                        style={{
+                          background: 'linear-gradient(135deg, #f24444ff 0%, #a26f4bff 100%)',
+                          border: 'none',
+                          padding: '14px 28px',
+                          fontSize: '1rem',
+                          fontWeight: '600',
+                          borderRadius: '12px',
+                          boxShadow: '0 8px 20px rgba(247, 144, 144, 0.4)',
+                          marginTop:'50px'
+                        }}
+                      >
+                        🚀 Send Message
+                      </CButton>
+                    </div>
                   </CForm>
                 </CCardBody>
               </CCard>
             </CCol>
-            
+
+            {/* Contact Information */}
             {/* Contact Information */}
             <CCol lg={4}>
               <div style={{ position: 'sticky', top: '2rem' }}>
                 {/* Quick Contact */}
-                <CCard style={{ 
+                <CCard style={{
                   border: 'none',
                   borderRadius: '20px',
                   marginBottom: '1.5rem',
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                   color: 'white',
                   overflow: 'hidden'
                 }}>
                   <CCardBody style={{ padding: '2rem' }}>
-                    <h4 style={{ 
-                      fontWeight: '700', 
+                    <h4 style={{
+                      fontWeight: '700',
                       marginBottom: '1.5rem',
                       display: 'flex',
                       alignItems: 'center',
@@ -366,11 +368,11 @@ const Contact = () => {
                       <span style={{ fontSize: '1.2rem' }}>📞</span>
                       Quick Contact
                     </h4>
-                    
+
                     <div className="mb-3">
-                      <div style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
                         marginBottom: '0.8rem',
                         background: 'rgba(255,255,255,0.1)',
                         padding: '0.8rem',
@@ -379,13 +381,13 @@ const Contact = () => {
                         <CIcon icon={cilPhone} style={{ marginRight: '0.8rem', fontSize: '1.1rem' }} />
                         <div>
                           <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Call Us</div>
-                          <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>+1 (555) 123-4567</div>
+                          <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>+92 300 1234567</div>
                         </div>
                       </div>
-                      
-                      <div style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
+
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
                         marginBottom: '0.8rem',
                         background: 'rgba(255,255,255,0.1)',
                         padding: '0.8rem',
@@ -394,12 +396,12 @@ const Contact = () => {
                         <CIcon icon={cilEnvelopeOpen} style={{ marginRight: '0.8rem', fontSize: '1.1rem' }} />
                         <div>
                           <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Email Us</div>
-                          <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>hello@eventsphere.com</div>
+                          <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>support@yourcompany.pk</div>
                         </div>
                       </div>
-                      
-                      <div style={{ 
-                        display: 'flex', 
+
+                      <div style={{
+                        display: 'flex',
                         alignItems: 'center',
                         background: 'rgba(255,255,255,0.1)',
                         padding: '0.8rem',
@@ -407,8 +409,8 @@ const Contact = () => {
                       }}>
                         <span style={{ marginRight: '0.8rem', fontSize: '1.1rem' }}>💬</span>
                         <div>
-                          <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Live Chat</div>
-                          <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>Available 24/7</div>
+                          <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>WhatsApp</div>
+                          <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>+92 300 7654321</div>
                         </div>
                       </div>
                     </div>
@@ -416,16 +418,16 @@ const Contact = () => {
                 </CCard>
 
                 {/* Office Locations */}
-                <CCard style={{ 
+                <CCard style={{
                   border: 'none',
                   borderRadius: '20px',
                   marginBottom: '1.5rem',
-                  boxShadow: '0 6px 25px rgba(0,0,0,0.08)'
+                  boxShadow: '0 6px 25px rgba(45, 45, 45, 0.08)'
                 }}>
                   <CCardBody style={{ padding: '2rem' }}>
-                    <h5 style={{ 
-                      fontWeight: '700', 
-                      color: '#1e293b',
+                    <h5 style={{
+                      fontWeight: '700',
+                      color: '#ffffffff',
                       marginBottom: '1.5rem',
                       display: 'flex',
                       alignItems: 'center',
@@ -434,41 +436,41 @@ const Contact = () => {
                       <span style={{ fontSize: '1.1rem' }}>🏢</span>
                       Our Offices
                     </h5>
-                    
+
                     {[
                       {
-                        city: 'New York',
-                        address: '123 Business Ave, Suite 500\nNew York, NY 10001',
-                        color: '#2563eb'
+                        city: 'Karachi',
+                        address: '12th Floor, Ocean Mall,\nClifton, Karachi',
+                        color: '#16a34a'
                       },
                       {
-                        city: 'London',
-                        address: '45 Corporate St, Floor 12\nLondon, UK EC1A 1BB',
-                        color: '#059669'
+                        city: 'Lahore',
+                        address: 'Gulberg III,\nMain Boulevard, Lahore',
+                        color: '#0d9488'
                       },
                       {
-                        city: 'Singapore',
-                        address: '88 Marina Bay Dr, Level 25\nSingapore 018956',
+                        city: 'Islamabad',
+                        address: 'Blue Area,\nIslamabad',
                         color: '#dc2626'
                       }
                     ].map((office, index) => (
-                      <div key={index} style={{ 
+                      <div key={index} style={{
                         marginBottom: index < 2 ? '1.2rem' : 0,
                         padding: '1rem',
                         background: `${office.color}08`,
                         borderRadius: '10px',
                         borderLeft: `3px solid ${office.color}`
                       }}>
-                        <div style={{ 
-                          fontWeight: '600', 
+                        <div style={{
+                          fontWeight: '600',
                           color: office.color,
                           marginBottom: '0.3rem',
                           fontSize: '0.9rem'
                         }}>
                           {office.city}
                         </div>
-                        <div style={{ 
-                          color: '#64748b', 
+                        <div style={{
+                          color: '#64748b',
                           fontSize: '0.8rem',
                           lineHeight: 1.4,
                           whiteSpace: 'pre-line'
@@ -480,69 +482,11 @@ const Contact = () => {
                   </CCardBody>
                 </CCard>
 
-                {/* Business Hours */}
-                <CCard style={{ 
-                  border: 'none',
-                  borderRadius: '20px',
-                  boxShadow: '0 6px 25px rgba(0,0,0,0.08)'
-                }}>
-                  <CCardBody style={{ padding: '2rem' }}>
-                    <h5 style={{ 
-                      fontWeight: '700', 
-                      color: '#1e293b',
-                      marginBottom: '1.5rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem'
-                    }}>
-                      <span style={{ fontSize: '1.1rem' }}>⏰</span>
-                      Business Hours
-                    </h5>
-                    
-                    <div style={{ fontSize: '0.9rem', color: '#64748b' }}>
-                      <div style={{ 
-                        display: 'flex', 
-                        justifyContent: 'space-between',
-                        marginBottom: '0.5rem',
-                        padding: '0.5rem 0'
-                      }}>
-                        <span>Monday - Friday:</span>
-                        <span style={{ fontWeight: '600' }}>9:00 AM - 6:00 PM</span>
-                      </div>
-                      <div style={{ 
-                        display: 'flex', 
-                        justifyContent: 'space-between',
-                        marginBottom: '0.5rem',
-                        padding: '0.5rem 0'
-                      }}>
-                        <span>Saturday:</span>
-                        <span style={{ fontWeight: '600' }}>10:00 AM - 4:00 PM</span>
-                      </div>
-                      <div style={{ 
-                        display: 'flex', 
-                        justifyContent: 'space-between',
-                        padding: '0.5rem 0'
-                      }}>
-                        <span>Sunday:</span>
-                        <span style={{ fontWeight: '600', color: '#dc2626' }}>Closed</span>
-                      </div>
-                    </div>
-                    
-                    <div style={{
-                      marginTop: '1rem',
-                      padding: '1rem',
-                      background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)',
-                      borderRadius: '10px',
-                      textAlign: 'center'
-                    }}>
-                      <div style={{ fontSize: '0.8rem', color: '#92400e', fontWeight: '600' }}>
-                        🌍 Global Support Available 24/7
-                      </div>
-                    </div>
-                  </CCardBody>
-                </CCard>
+
+
               </div>
             </CCol>
+
           </CRow>
         </CContainer>
       </div>
