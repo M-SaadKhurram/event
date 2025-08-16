@@ -119,7 +119,7 @@ const Feedback = () => {
     <div style={{ backgroundColor: '#fff', overflow: 'hidden' }}>
       {/* Hero Section */}
       <div style={{ 
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg,  #8b0000 0%)',
         minHeight: '60vh',
         display: 'flex',
         alignItems: 'center',
@@ -144,16 +144,15 @@ const Feedback = () => {
           <CRow className="justify-content-center text-center">
             <CCol lg={8} className="text-white">
               <CBadge 
-                color="light" 
                 className="mb-3 px-3 py-1"
                 style={{ 
                   fontSize: '0.8rem',
                   fontWeight: '600',
-                  color: '#667eea',
+                  color: 'white',
                   borderRadius: '50px',
-                  background: 'rgba(255,255,255,0.95)',
+                  background: 'rgba(7, 150, 62, 0.95)',
                   backdropFilter: 'blur(10px)',
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+                  boxShadow: '0 4px 15px rgba(149, 255, 127, 0.1)'
                 }}
               >
                 💬 Your Feedback Matters
@@ -171,7 +170,7 @@ const Feedback = () => {
               }}>
                 Help Us{' '}
                 <span style={{ 
-                  background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                  background: 'linear-gradient(135deg, #2cc727ff 0%, #f59e0b 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text'
@@ -189,8 +188,7 @@ const Feedback = () => {
                 maxWidth: '600px',
                 margin: '0 auto 2rem'
               }}>
-                Your insights drive our innovation. Share your experience with EventSphere 
-                and help us create even better expo management solutions.
+                Your voice matters. Let us know your EventSphere experience so we can elevate expo management to new heights
               </p>
             </CCol>
           </CRow>
@@ -273,7 +271,7 @@ const Feedback = () => {
               }}>
                 {/* Header */}
                 <div style={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  background: 'linear-gradient(135deg, #8b0000 0%, #ac51c3ff 200%)',
                   padding: '2.5rem 2rem',
                   color: 'white',
                   textAlign: 'center'
@@ -283,14 +281,14 @@ const Feedback = () => {
                     marginBottom: '0.8rem',
                     fontSize: '1.8rem'
                   }}>
-                    📝 Share Your Experience
+                    📝 Let’s Hear from You
                   </h3>
                   <p style={{ 
                     opacity: 0.9, 
                     margin: 0,
                     fontSize: '1.1rem'
                   }}>
-                    Your feedback helps us deliver exceptional expo management experiences
+                    From your experience comes our progress. Share your thoughts :)
                   </p>
                   
                   {/* Progress Bar */}
@@ -308,20 +306,20 @@ const Feedback = () => {
                       value={Math.round((Object.values(feedbackData).filter(v => v !== '' && v !== false).length / 11) * 100)}
                       style={{ 
                         height: '8px',
-                        background: 'rgba(255,255,255,0.2)',
+                        background: 'rgba(255, 69, 69, 0.2)',
                         borderRadius: '4px'
                       }}
                     />
                   </div>
                 </div>
                 
-                <CCardBody style={{ padding: '3rem' }}>
+                <CCardBody style={{ padding: '3rem',background: 'linear-gradient(135deg, #c71616ff 0%, #de4b9aff 100%)', }}>
                   <CForm onSubmit={handleSubmit}>
                     {/* Personal Information */}
                     <div style={{ marginBottom: '2.5rem' }}>
                       <h5 style={{ 
                         fontWeight: '700', 
-                        color: '#1e293b',
+                        color: '#ffffffff',
                         marginBottom: '1.5rem',
                         display: 'flex',
                         alignItems: 'center',
@@ -333,7 +331,7 @@ const Feedback = () => {
                       
                       <CRow>
                         <CCol md={6} className="mb-3">
-                          <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                          <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                             Full Name *
                           </CFormLabel>
                           <CFormInput
@@ -351,7 +349,7 @@ const Feedback = () => {
                           />
                         </CCol>
                         <CCol md={6} className="mb-3">
-                          <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                          <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                             Email Address *
                           </CFormLabel>
                           <CFormInput
@@ -370,7 +368,7 @@ const Feedback = () => {
                         </CCol>
                       </CRow>
                       
-                      <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                      <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                         Event Type *
                       </CFormLabel>
                       <CFormSelect
@@ -380,7 +378,7 @@ const Feedback = () => {
                         required
                         style={{ 
                           borderRadius: '10px',
-                          border: '2px solid #e5e7eb',
+                          border: '2px solid #ebe5e5ff',
                           padding: '12px 16px'
                         }}
                       >
@@ -399,7 +397,7 @@ const Feedback = () => {
                     <div style={{ marginBottom: '2.5rem' }}>
                       <h5 style={{ 
                         fontWeight: '700', 
-                        color: '#1e293b',
+                        color: '#ffffffff',
                         marginBottom: '1.5rem',
                         display: 'flex',
                         alignItems: 'center',
@@ -411,7 +409,7 @@ const Feedback = () => {
                       
                       <CRow>
                         <CCol md={6} className="mb-4">
-                          <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                          <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                             Overall Satisfaction *
                           </CFormLabel>
                           <StarRating 
@@ -421,7 +419,7 @@ const Feedback = () => {
                           />
                         </CCol>
                         <CCol md={6} className="mb-4">
-                          <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                          <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                             Ease of Use *
                           </CFormLabel>
                           <StarRating 
@@ -434,7 +432,7 @@ const Feedback = () => {
                       
                       <CRow>
                         <CCol md={6} className="mb-4">
-                          <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                          <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                             Customer Service *
                           </CFormLabel>
                           <StarRating 
@@ -444,7 +442,7 @@ const Feedback = () => {
                           />
                         </CCol>
                         <CCol md={6} className="mb-4">
-                          <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                          <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                             Features & Functionality *
                           </CFormLabel>
                           <StarRating 
@@ -460,7 +458,7 @@ const Feedback = () => {
                     <div style={{ marginBottom: '2.5rem' }}>
                       <h5 style={{ 
                         fontWeight: '700', 
-                        color: '#1e293b',
+                        color: '#ffffffff',
                         marginBottom: '1.5rem',
                         display: 'flex',
                         alignItems: 'center',
@@ -470,7 +468,7 @@ const Feedback = () => {
                         Recommendation
                       </h5>
                       
-                      <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                      <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                         Would you recommend EventSphere to others? *
                       </CFormLabel>
                       <CFormSelect
@@ -497,7 +495,7 @@ const Feedback = () => {
                     <div style={{ marginBottom: '2.5rem' }}>
                       <h5 style={{ 
                         fontWeight: '700', 
-                        color: '#1e293b',
+                        color: '#ffffffff',
                         marginBottom: '1.5rem',
                         display: 'flex',
                         alignItems: 'center',
@@ -509,7 +507,7 @@ const Feedback = () => {
                       
                       <CRow>
                         <CCol md={12} className="mb-3">
-                          <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                          <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                             What could we improve?
                           </CFormLabel>
                           <CFormTextarea
@@ -527,7 +525,7 @@ const Feedback = () => {
                         </CCol>
                       </CRow>
                       
-                      <CFormLabel style={{ fontWeight: '600', color: '#374151' }}>
+                      <CFormLabel style={{ fontWeight: '600', color: '#ffffffff' }}>
                         Share your success story (Optional)
                       </CFormLabel>
                       <CFormTextarea
@@ -554,7 +552,7 @@ const Feedback = () => {
                         label="I allow EventSphere to use my feedback publicly (with my name) for testimonials and marketing purposes"
                         style={{ 
                           fontSize: '0.95rem',
-                          color: '#64748b'
+                          color: feedbackData.allowPublic ? 'red' : '#8b6464ff'
                         }}
                       />
                     </div>
@@ -564,7 +562,7 @@ const Feedback = () => {
                       <CButton 
                         type="submit"
                         style={{
-                          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                          background: 'linear-gradient(135deg, #e11212ff 0%, #df772cff 130%)',
                           border: 'none',
                           borderRadius: '12px',
                           padding: '15px 40px',
@@ -589,7 +587,7 @@ const Feedback = () => {
                       <p style={{ 
                         marginTop: '1rem', 
                         fontSize: '0.85rem', 
-                        color: '#64748b',
+                        color: '#ffffffff',
                         maxWidth: '500px',
                         margin: '1rem auto 0'
                       }}>
@@ -605,113 +603,115 @@ const Feedback = () => {
         </CContainer>
       </div>
 
-      {/* Customer Reviews Section */}
-      <div style={{ padding: '5rem 0', background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' }}>
-        <CContainer>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ 
-              fontWeight: '800', 
-              color: '#1e293b',
-              marginBottom: '1rem',
-              fontSize: 'clamp(1.8rem, 3vw, 2.5rem)'
-            }}>
-              What Our Clients Say
-            </h2>
-            <p style={{ 
-              fontSize: '1.1rem', 
-              color: '#64748b',
-              maxWidth: '600px',
-              margin: '0 auto'
-            }}>
-              Real feedback from real event organizers who trust EventSphere
-            </p>
-          </div>
-          
-          <CRow>
-            {[
-              {
-                name: "Sarah Johnson",
-                company: "TechCorp Events",
-                rating: 5,
-                text: "EventSphere transformed how we manage our annual tech conference. The platform is intuitive and the support team is exceptional!",
-                avatar: "👩‍💼"
-              },
-              {
-                name: "Michael Chen",
-                company: "Global Exhibitions",
-                rating: 5,
-                text: "Outstanding platform! We've organized 50+ events using EventSphere. The analytics and reporting features are game-changers.",
-                avatar: "👨‍💼"
-              },
-              {
-                name: "Emily Rodriguez",
-                company: "Creative Events Co.",
-                rating: 5,
-                text: "The best investment we've made for our event business. EventSphere streamlined our entire workflow and improved client satisfaction.",
-                avatar: "👩‍🎨"
-              }
-            ].map((review, index) => (
-              <CCol lg={4} md={6} className="mb-4" key={index}>
-                <CCard style={{
-                  border: 'none',
-                  borderRadius: '16px',
-                  height: '100%',
-                  background: 'white',
-                  boxShadow: '0 6px 25px rgba(0,0,0,0.08)',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-5px)'
-                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.12)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 6px 25px rgba(0,0,0,0.08)'
+{/* Customer Reviews Section */}
+<div style={{ padding: '5rem 0', background: 'linear-gradient(135deg, #f9fcf8ff 0%, #e2e8f0 100%)' }}>
+  <CContainer>
+    <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+      <h2 style={{ 
+        fontWeight: '800', 
+        color: '#1e293b',
+        marginBottom: '1rem',
+        fontSize: 'clamp(1.8rem, 3vw, 2.5rem)'
+      }}>
+        What Our Clients Say
+      </h2>
+      <p style={{ 
+        fontSize: '1.1rem', 
+        color: '#64748b',
+        maxWidth: '600px',
+        margin: '0 auto'
+      }}>
+        Real stories from event organizers across Pakistan who trust EventSphere
+      </p>
+    </div>
+    
+    <CRow>
+      {[
+        {
+          name: "Tasmia",
+          company: "Karachi Expo Planners",
+          rating: 5,
+          text: "EventSphere helped us flawlessly manage our Karachi Trade Fair. From ticketing to crowd management, everything was smooth and organized.",
+          avatar: "👩‍💼"
+        },
+        {
+          name: "Umaima",
+          company: "Lahore Wedding & Event Services",
+          rating: 5,
+          text: "We organized a large-scale cultural festival in Lahore with EventSphere. The coordination tools saved us days of work and improved vendor communication.",
+          avatar: "👩‍💻"
+        },
+        {
+          name: "Adnan",
+          company: "Islamabad Corporate Events",
+          rating: 5,
+          text: "Our Islamabad Business Conference ran without a hitch thanks to EventSphere. The local support team understood our needs and delivered beyond expectations.",
+          avatar: "👨‍💼"
+        }
+      ].map((review, index) => (
+        <CCol lg={4} md={6} className="mb-4" key={index}>
+          <CCard style={{
+            border: 'none',
+            borderRadius: '16px',
+            height: '100%',
+            background: '#60eb60ff',
+        
+            boxShadow: '0 6px 25px rgba(0,0,0,0.08)',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-5px)'
+            e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.12)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.boxShadow = '0 6px 25px rgba(0,0,0,0.08)'
+          }}>
+            <CCardBody style={{ padding: '2rem' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                {[...Array(review.rating)].map((_, i) => (
+                  <span key={i} style={{ color: '#ffb700ff', fontSize: '1.2rem' }}>⭐</span>
+                ))}
+              </div>
+              <p style={{ 
+                fontSize: '1rem', 
+                lineHeight: 1.6, 
+                color: '#374151',
+                marginBottom: '1.5rem',
+                fontStyle: 'italic'
+              }}>
+                "{review.text}"
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ 
+                  fontSize: '2rem',
+                  background: 'linear-gradient(135deg, #ff0000ff 0%, #764ba2 100%)',
+                  borderRadius: '50%',
+                  width: '50px',
+                  height: '50px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}>
-                  <CCardBody style={{ padding: '2rem' }}>
-                    <div style={{ marginBottom: '1rem' }}>
-                      {[...Array(review.rating)].map((_, i) => (
-                        <span key={i} style={{ color: '#fbbf24', fontSize: '1.2rem' }}>⭐</span>
-                      ))}
-                    </div>
-                    <p style={{ 
-                      fontSize: '1rem', 
-                      lineHeight: 1.6, 
-                      color: '#374151',
-                      marginBottom: '1.5rem',
-                      fontStyle: 'italic'
-                    }}>
-                      "{review.text}"
-                    </p>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <div style={{ 
-                        fontSize: '2rem',
-                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                        borderRadius: '50%',
-                        width: '50px',
-                        height: '50px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        {review.avatar}
-                      </div>
-                      <div>
-                        <div style={{ fontWeight: '600', color: '#1e293b' }}>
-                          {review.name}
-                        </div>
-                        <div style={{ fontSize: '0.9rem', color: '#64748b' }}>
-                          {review.company}
-                        </div>
-                      </div>
-                    </div>
-                  </CCardBody>
-                </CCard>
-              </CCol>
-            ))}
-          </CRow>
-        </CContainer>
-      </div>
+                  {review.avatar}
+                </div>
+                <div>
+                  <div style={{ fontWeight: '600', color: '#1e293b' }}>
+                    {review.name}
+                  </div>
+                  <div style={{ fontSize: '0.9rem', color: '#000000ff' }}>
+                    {review.company}
+                  </div>
+                </div>
+              </div>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      ))}
+    </CRow>
+  </CContainer>
+</div>
+
 
       <style>
         {`

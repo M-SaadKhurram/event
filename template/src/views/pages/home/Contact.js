@@ -396,7 +396,7 @@ const Contact = () => {
                         <CIcon icon={cilEnvelopeOpen} style={{ marginRight: '0.8rem', fontSize: '1.1rem' }} />
                         <div>
                           <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Email Us</div>
-                          <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>support@yourcompany.pk</div>
+                          <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>support@eventSphere.pk</div>
                         </div>
                       </div>
 
