@@ -1,4 +1,4 @@
- import React from 'react'
+import React from 'react'
 import {
   CAvatar,
   CDropdown,
@@ -7,7 +7,7 @@ import {
   CDropdownMenu,
   CDropdownToggle,
 } from '@coreui/react'
-import { cilAccountLogout, cilUser, cilSettings } from '@coreui/icons'
+import { cilAccountLogout, cilUser, cilSettings, cilLockLocked } from '@coreui/icons' // add cilLockLocked
 import CIcon from '@coreui/icons-react'
 import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
@@ -21,6 +21,10 @@ const AppHeaderDropdown = () => {
   const handleLogout = () => {
     logout()
     navigate('/login')
+  }
+
+  const handleChangePassword = () => {
+    navigate('/dashboard/change-password') // assumes you have a route for this
   }
 
   return (
@@ -39,7 +43,10 @@ const AppHeaderDropdown = () => {
         <CDropdownItem>
           <strong>Role:</strong> {user?.role}
         </CDropdownItem>
-        
+        <CDropdownItem onClick={handleChangePassword}>
+          <CIcon icon={cilLockLocked} className="me-2" />
+          Change Password
+        </CDropdownItem>
         <CDropdownItem divider />
         <CDropdownItem onClick={handleLogout}>
           <CIcon icon={cilAccountLogout} className="me-2" />

@@ -4,7 +4,7 @@ const ensureAuthenticated = require('../Middlewares/Auth'); // Changed from './M
 const requireRole = require('../Middlewares/RequireRole'); // Also fix this one
 
 // Import the controller functions
-const { signup, login } = require('../Controllers/AuthController');
+const { signup, login, forgotPassword, changePassword } = require('../Controllers/AuthController');
 
 // Import validation middleware
 const { signupValidation, loginValidation } = require('../Middlewares/AuthValidation');
@@ -12,6 +12,8 @@ const { signupValidation, loginValidation } = require('../Middlewares/AuthValida
 // User registration and login
 router.post('/signup', signupValidation, signup); // Signup route
 router.post('/login', loginValidation, login);     // Login route
+router.post('/forgot-password', forgotPassword);   // Forgot password route
+router.post('/change-password', changePassword);   // Change password route
 
 // // Expo and Exhibitor routes with role-based access
 // // Only Admin can create expos

@@ -74,6 +74,9 @@ const SchedulesList = React.lazy(() => import('./views/schedules/index'))
 const ScheduleCreate = React.lazy(() => import('./views/schedules/Create'))
 const ScheduleEdit = React.lazy(() => import('./views/schedules/Edit'))
 
+// Change Password
+const ChangePassword = React.lazy(() => import('./views/pages/login/ChangePassword'))
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/', name: 'Dashboard', element: Dashboard },
@@ -143,6 +146,7 @@ const routes = [
   { path: '/schedules', name: 'Schedules', element: SchedulesList, exact: true },
   { path: '/schedules/create', name: 'Create Schedule', element: ScheduleCreate },
   { path: '/schedules/edit/:id', name: 'Edit Schedule', element: ScheduleEdit },
+  { path: '/change-password', name: 'Change Password', element: ChangePassword },
 ]
 
 export default routes

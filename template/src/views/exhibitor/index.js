@@ -47,9 +47,11 @@ import {
   cilXCircle
 } from '@coreui/icons'
 import { getExhibitors, deleteExhibitor, approveExhibitor } from '../../services/exhibitors'
+import { useAuth } from '../../context/AuthContext'
 
 const ExhibitorIndex = () => {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [exhibitors, setExhibitors] = useState([])
   const [filteredExhibitors, setFilteredExhibitors] = useState([])
   const [loading, setLoading] = useState(true)
@@ -374,24 +376,27 @@ const ExhibitorIndex = () => {
                       </CTableDataCell>
                       <CTableDataCell>
                         <div className="d-flex gap-2">
-                          {exhibitor.status === 'pending' && (
+                          {user?.role === 'Admin' && exhibitor.status === 'pending' && (
                             <CButton
                               color="success"
                               variant="outline"
                               size="sm"
                               onClick={() => handleApprove(exhibitor._id)}
                             >
-                              <CIcon icon={cilCheckCircle} size="sm" /> 
+                              <CIcon icon={cilCheckCircle} size="sm" />
                             </CButton>
                           )}
-                          <CButton
-                            color="info"
-                            variant="outline"
-                            size="sm"
-                            onClick={() => navigate(`/exhibitor/edit/${exhibitor._id}`)}
-                          >
-                            <CIcon icon={cilPencil} size="sm" />
-                          </CButton>
+                          {/* Only show Edit button if status is NOT approved */}
+                          {exhibitor.status !== 'approved' && (
+                            <CButton
+                              color="info"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => navigate(`/dashboard/exhibitor/edit/${exhibitor._id}`)}
+                            >
+                              <CIcon icon={cilPencil} size="sm" />
+                            </CButton>
+                          )}
                           <CButton
                             color="danger"
                             variant="outline"

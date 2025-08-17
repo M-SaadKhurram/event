@@ -169,7 +169,7 @@ const EditExhibitor = () => {
       setSuccess('Exhibitor updated successfully!')
       
       setTimeout(() => {
-        navigate('/exhibitor')
+        navigate('/dashboard/exhibitor')
       }, 2000)
 
     } catch (err) {
@@ -235,7 +235,7 @@ const EditExhibitor = () => {
                 <CButton
                   color="secondary"
                   variant="outline"
-                  onClick={() => navigate('/exhibitor')}
+                  onClick={() => navigate('/dashboard/exhibitor')}
                 >
                   <CIcon icon={cilArrowLeft} className="me-2" />
                   Back to List
@@ -288,12 +288,17 @@ const EditExhibitor = () => {
 
                   {/* Selected Expo Info */}
                   {getSelectedExpo() && (
-                    <div className="mb-3 p-3 bg-light rounded">
-                      <h6>Selected Expo Details:</h6>
+                    <div className="mb-3 p-3 rounded" style={{ background: 'rgba(59,130,246,0.08)', borderLeft: '4px solid #3b82f6' }}>
+                      <h6 className="mb-2" style={{ color: '#2563eb' }}>
+                        <CIcon icon={cilCalendar} className="me-2" />
+                        Selected Expo Details
+                      </h6>
                       <div className="small">
                         <div>
-                          <CIcon icon={cilCalendar} className="me-1" />
-                          {new Date(getSelectedExpo().date).toLocaleDateString('en-US', {
+                          <strong>Event:</strong> {getSelectedExpo().title}
+                        </div>
+                        <div>
+                          <strong>Date:</strong> {new Date(getSelectedExpo().date).toLocaleDateString('en-US', {
                             weekday: 'long',
                             year: 'numeric',
                             month: 'long',
@@ -301,11 +306,10 @@ const EditExhibitor = () => {
                           })}
                         </div>
                         <div>
-                          <CIcon icon={cilLocationPin} className="me-1" />
-                          {getSelectedExpo().location}
+                          <strong>Location:</strong> {getSelectedExpo().location}
                         </div>
                         {getSelectedExpo().theme && (
-                          <div>Theme: {getSelectedExpo().theme}</div>
+                          <div><strong>Theme:</strong> {getSelectedExpo().theme}</div>
                         )}
                       </div>
                     </div>
@@ -432,12 +436,15 @@ const EditExhibitor = () => {
                   )}
 
                   {/* Exhibitor Info */}
-                  <div className="mb-3 p-3 bg-light rounded">
-                    <h6>Exhibitor Details</h6>
+                  <div className="mb-3 p-3 rounded" style={{ background: 'rgba(16,185,129,0.08)', borderLeft: '4px solid #10b981' }}>
+                    <h6 className="mb-2" style={{ color: '#059669' }}>
+                      <CIcon icon={cilBuilding} className="me-2" />
+                      Exhibitor Details
+                    </h6>
                     <div className="small">
-                      <div>Created: {new Date(exhibitor.created_at).toLocaleDateString()}</div>
-                      <div>Last Updated: {new Date(exhibitor.updated_at).toLocaleDateString()}</div>
-                      <div>ID: {exhibitor._id}</div>
+                      <div><strong>Created:</strong> {new Date(exhibitor.created_at).toLocaleDateString()}</div>
+                      <div><strong>Last Updated:</strong> {new Date(exhibitor.updated_at).toLocaleDateString()}</div>
+                      <div><strong>ID:</strong> {exhibitor._id}</div>
                     </div>
                   </div>
                 </CCol>
@@ -449,7 +456,7 @@ const EditExhibitor = () => {
                 <CButton
                   type="button"
                   color="secondary"
-                  onClick={() => navigate('/exhibitor')}
+                  onClick={() => navigate('/dashboard/exhibitor')}
                 >
                   Cancel
                 </CButton>
