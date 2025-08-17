@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { 
-  CRow, 
-  CCol, 
-  CCard, 
-  CCardBody, 
+import {
+  CRow,
+  CCol,
+  CCard,
+  CCardBody,
   CButton,
   CContainer,
   CBadge,
@@ -12,11 +12,11 @@ import {
 } from '@coreui/react'
 import { Link } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
-import { 
-  cilCalendar, 
-  cilPeople, 
-  cilChart, 
-  cilStar, 
+import {
+  cilCalendar,
+  cilPeople,
+  cilChart,
+  cilStar,
   cilCheckCircle,
   cilSpeedometer,
   cilLockLocked,
@@ -73,13 +73,13 @@ const Home = () => {
     try {
       setLoadingExpos(true)
       const data = await getExpos()
-      
+
       // Filter upcoming and ongoing expos and limit to 6
       const upcoming = data
         .filter(expo => expo.status === 'upcoming' || expo.status === 'ongoing')
         .sort((a, b) => new Date(a.date) - new Date(b.date))
         .slice(0, 6)
-      
+
       setUpcomingExpos(upcoming)
     } catch (error) {
       console.error('Error fetching expos:', error)
@@ -92,7 +92,7 @@ const Home = () => {
   const getExpoCategory = (expo) => {
     const title = expo.title.toLowerCase()
     const theme = expo.theme?.toLowerCase() || ''
-    
+
     if (title.includes('tech') || theme.includes('tech') || title.includes('innovation')) {
       return { category: 'Technology', color: '#2563eb', image: '🌐' }
     } else if (title.includes('health') || theme.includes('health') || title.includes('medical')) {
@@ -112,10 +112,10 @@ const Home = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
     })
   }
 
@@ -132,9 +132,9 @@ const Home = () => {
   return (
     <div style={{ backgroundColor: '#fff', overflow: 'hidden' }}>
       {/* Keep all existing sections unchanged until Upcoming Events */}
-      
+
       {/* Enhanced Hero Section */}
-      <div style={{ 
+      <div style={{
         background: 'linear-gradient(135deg,  #8b0000 0%)',
         minHeight: 'calc(100vh - 70px)',
         display: 'flex',
@@ -181,15 +181,15 @@ const Home = () => {
           transform: 'rotate(45deg)',
           animation: 'rotate 8s linear infinite'
         }}></div>
-        
+
         <CContainer style={{ position: 'relative', zIndex: 2 }}>
           <CRow className="align-items-center">
             <CCol lg={6} className="text-white">
               <div style={{ marginBottom: '1.5rem' }}>
-                <CBadge 
-                 
+                <CBadge
+
                   className="mb-3 px-3 py-1"
-                  style={{ 
+                  style={{
                     fontSize: '0.8rem',
                     fontWeight: '600',
                     color: 'white',
@@ -203,10 +203,10 @@ const Home = () => {
                   🏆 EventSphere Management - Industry Pioneer
                 </CBadge>
               </div>
-              
-              <h1 style={{  
+
+              <h1 style={{
                 fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-                fontWeight: '800', 
+                fontWeight: '800',
                 lineHeight: '1.2',
                 marginBottom: '1.2rem',
                 background: 'linear-gradient(135deg, #fff 0%, #f8fafc 100%)',
@@ -216,7 +216,7 @@ const Home = () => {
                 textShadow: '0 2px 4px rgba(0,0,0,0.1)'
               }}>
                 The Era{' '}
-                <span style={{ 
+                <span style={{
                   background: 'linear-gradient(135deg, #3CB371 0%, #d97706 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
@@ -236,8 +236,8 @@ const Home = () => {
                 </span>{' '}
                 Connect Globally
               </h1>
-              
-              <p style={{ 
+
+              <p style={{
                 fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
                 opacity: 0.95,
                 lineHeight: 1.6,
@@ -247,18 +247,18 @@ const Home = () => {
               }}>
                 For businesses and professionals ready to make their mark on the world stage, EventSphere is your ultimate partner. We provide a cutting-edge platform that simplifies expo organization, enhances exhibitor visibility, and maximizes attendee engagement.
               </p>
-              
-              <div style={{ 
-                display: 'flex', 
+
+              <div style={{
+                display: 'flex',
                 flexWrap: 'wrap',
-                gap: '1rem', 
-                marginBottom: '3rem' 
+                gap: '1rem',
+                marginBottom: '3rem'
               }}>
-                <CButton 
-                  as={Link} 
-                  to="/register" 
+                <CButton
+                  as={Link}
+                  to="/register"
                   size="lg"
-                  style={{ 
+                  style={{
                     background: 'linear-gradient(135deg, #3CB371 0%, #d97706 100%)',
                     border: 'none',
                     padding: '14px 28px',
@@ -281,13 +281,13 @@ const Home = () => {
                 >
                   🚀 Transform Your Expo
                 </CButton>
-                
-                <CButton 
-                  as={Link} 
-                  to="/login" 
-                  size="lg" 
+
+                <CButton
+                  as={Link}
+                  to="/login"
+                  size="lg"
                   variant="outline"
-                  style={{ 
+                  style={{
                     borderColor: 'rgba(255,255,255,0.4)',
                     color: 'white',
                     padding: '14px 28px',
@@ -313,12 +313,12 @@ const Home = () => {
                   📊 Watch Demo
                 </CButton>
               </div>
-              
+
               {/* Enhanced Trust Indicators with Animation */}
-              <div style={{ 
+              <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-                gap: '1.5rem', 
+                gap: '1.5rem',
                 maxWidth: '600px'
               }}>
                 {[
@@ -335,17 +335,17 @@ const Home = () => {
                     border: '1px solid rgba(255,255,255,0.2)',
                     transition: 'all 0.3s ease'
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-3px)'
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
-                  }}>
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-3px)'
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
+                    }}>
                     <div style={{ fontSize: '1.2rem', marginBottom: '0.3rem' }}>{stat.icon}</div>
-                    <div style={{ 
-                      fontSize: '1.8rem', 
+                    <div style={{
+                      fontSize: '1.8rem',
                       fontWeight: '700',
                       background: 'linear-gradient(135deg, #fbbf24 0%, #ffffff 100%)',
                       WebkitBackgroundClip: 'text',
@@ -361,9 +361,9 @@ const Home = () => {
                 ))}
               </div>
             </CCol>
-            
+
             <CCol lg={6} className="mt-4 mt-lg-0">
-              <div style={{ 
+              <div style={{
                 position: 'relative',
                 padding: '1.5rem'
               }}>
@@ -388,7 +388,7 @@ const Home = () => {
                     background: 'linear-gradient(90deg, #f59e0b, #10b981, #3b82f6, #8b5cf6)',
                     borderRadius: '20px 20px 0 0'
                   }}></div>
-                  
+
                   <div style={{ display: 'flex', gap: '8px', marginBottom: '1.2rem', alignItems: 'center' }}>
                     <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ef4444' }}></div>
                     <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f59e0b' }}></div>
@@ -397,11 +397,11 @@ const Home = () => {
                       🟢 Live System
                     </div>
                   </div>
-                  
-                  <div style={{ 
-                    color: 'white', 
-                    fontSize: '1.1rem', 
-                    fontWeight: '600', 
+
+                  <div style={{
+                    color: 'white',
+                    fontSize: '1.1rem',
+                    fontWeight: '600',
                     marginBottom: '1.5rem',
                     display: 'flex',
                     alignItems: 'center',
@@ -409,11 +409,11 @@ const Home = () => {
                   }}>
                     <span>⚡</span> EventSphere Control Center
                   </div>
-                  
+
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
-                    <div style={{ 
-                      background: 'linear-gradient(135deg, rgba(245,158,11,0.2) 0%, rgba(245,158,11,0.1) 100%)', 
-                      padding: '1.2rem', 
+                    <div style={{
+                      background: 'linear-gradient(135deg, rgba(245,158,11,0.2) 0%, rgba(245,158,11,0.1) 100%)',
+                      padding: '1.2rem',
                       borderRadius: '12px',
                       border: '1px solid rgba(245,158,11,0.3)',
                       position: 'relative',
@@ -428,9 +428,9 @@ const Home = () => {
                       <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#fbbf24', marginBottom: '0.3rem' }}>2,847</div>
                       <div style={{ fontSize: '0.8rem', opacity: 0.9 }}>Live Attendees</div>
                     </div>
-                    <div style={{ 
-                      background: 'linear-gradient(135deg, rgba(52,211,153,0.2) 0%, rgba(52,211,153,0.1) 100%)', 
-                      padding: '1.2rem', 
+                    <div style={{
+                      background: 'linear-gradient(135deg, rgba(52,211,153,0.2) 0%, rgba(52,211,153,0.1) 100%)',
+                      padding: '1.2rem',
                       borderRadius: '12px',
                       border: '1px solid rgba(52,211,153,0.3)',
                       position: 'relative',
@@ -446,7 +446,7 @@ const Home = () => {
                       <div style={{ fontSize: '0.8rem', opacity: 0.9 }}>Active Booths</div>
                     </div>
                   </div>
-                  
+
                   {/* Enhanced Chart */}
                   <div style={{
                     height: '80px',
@@ -470,8 +470,8 @@ const Home = () => {
                         left: `${left}%`,
                         width: '4px',
                         height: `${30 + (index * 4)}%`,
-                        background: index < 4 ? 
-                          'linear-gradient(180deg, #fbbf24, #f59e0b)' : 
+                        background: index < 4 ?
+                          'linear-gradient(180deg, #fbbf24, #f59e0b)' :
                           'linear-gradient(180deg, #34d399, #10b981)',
                         borderRadius: '2px',
                         animation: `growUp 1.5s ease-out ${index * 0.1}s both`
@@ -479,7 +479,7 @@ const Home = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 {/* Enhanced Floating Elements */}
                 <div style={{
                   position: 'absolute',
@@ -495,7 +495,7 @@ const Home = () => {
                 }}>
                   <CIcon icon={cilCalendar} style={{ color: '#fbbf24', fontSize: '1.3rem' }} />
                 </div>
-                
+
                 <div style={{
                   position: 'absolute',
                   bottom: '5%',
@@ -531,8 +531,8 @@ const Home = () => {
       </div>
 
       {/* Enhanced Problem Statement Section */}
-      <div style={{ 
-        padding: '5rem 0', 
+      <div style={{
+        padding: '5rem 0',
         background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
         position: 'relative'
       }}>
@@ -548,13 +548,13 @@ const Home = () => {
           `,
           backgroundSize: '50px 50px'
         }}></div>
-        
+
         <CContainer style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <CBadge 
-              color="success" 
+            <CBadge
+              color="success"
               className="mb-3 px-3 py-1"
-              style={{ 
+              style={{
                 fontSize: '0.9rem',
                 backgroundColor: '#fee2e2',
                 color: 'white',
@@ -565,15 +565,15 @@ const Home = () => {
             >
               🚨 Critical Challenges We Solve
             </CBadge>
-            <h2 style={{ 
-              fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', 
-              fontWeight: '800', 
+            <h2 style={{
+              fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
+              fontWeight: '800',
               color: '#1e293b',
               marginBottom: '1rem',
               lineHeight: '1.3'
             }}>
               Traditional Expo Management{' '}
-              <span style={{ 
+              <span style={{
                 background: 'linear-gradient(135deg,  #8b0000 0%, #ea580c 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -582,17 +582,17 @@ const Home = () => {
                 Pain Points
               </span>
             </h2>
-            <p style={{ 
-              fontSize: '1.1rem', 
-              color: '#64748b', 
-              maxWidth: '700px', 
+            <p style={{
+              fontSize: '1.1rem',
+              color: '#64748b',
+              maxWidth: '700px',
               margin: '0 auto',
               lineHeight: 1.6
             }}>
               EventSphere spotted major inefficiencies draining industry value.
             </p>
           </div>
-          
+
           <CRow>
             {[
               {
@@ -621,7 +621,7 @@ const Home = () => {
               }
             ].map((problem, index) => (
               <CCol lg={4} md={6} className="mb-4" key={index}>
-                <CCard style={{ 
+                <CCard style={{
                   border: 'none',
                   borderRadius: '18px',
                   padding: '1.8rem',
@@ -633,14 +633,14 @@ const Home = () => {
                   overflow: 'hidden',
                   transition: 'all 0.3s ease'
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)'
-                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.15)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 6px 25px rgba(0,0,0,0.08)'
-                }}>
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-6px)'
+                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.15)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.currentTarget.style.boxShadow = '0 6px 25px rgba(0,0,0,0.08)'
+                  }}>
                   <CCardBody style={{ padding: 0, position: 'relative', zIndex: 2 }}>
                     <div style={{
                       width: '60px',
@@ -661,9 +661,9 @@ const Home = () => {
                         fontSize: '1.2rem'
                       }}>{problem.emoji}</div>
                     </div>
-                    
-                    <CBadge 
-                      style={{ 
+
+                    <CBadge
+                      style={{
                         background: problem.color,
                         color: 'white',
                         marginBottom: '1rem',
@@ -674,18 +674,18 @@ const Home = () => {
                     >
                       {problem.stats}
                     </CBadge>
-                    
-                    <h5 style={{ 
-                      fontWeight: '700', 
+
+                    <h5 style={{
+                      fontWeight: '700',
                       color: '#1e293b',
                       marginBottom: '1rem',
                       fontSize: '1.1rem'
                     }}>
                       {problem.title}
                     </h5>
-                    <p style={{ 
-                      color: '#64748b', 
-                      lineHeight: 1.6, 
+                    <p style={{
+                      color: '#64748b',
+                      lineHeight: 1.6,
                       margin: 0,
                       fontSize: '0.95rem'
                     }}>
@@ -713,13 +713,13 @@ const Home = () => {
           `,
           backgroundSize: '60px 60px'
         }}></div>
-        
+
         <CContainer style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <CBadge 
-              color="danger" 
+            <CBadge
+              color="danger"
               className="mb-3 px-3 py-1"
-              style={{ 
+              style={{
                 fontSize: '0.9rem',
                 backgroundColor: '#dbeafe',
                 color: '#ffffffff',
@@ -730,15 +730,15 @@ const Home = () => {
             >
               🎯 Upcoming Events
             </CBadge>
-            <h2 style={{ 
-              fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', 
-              fontWeight: '800', 
+            <h2 style={{
+              fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
+              fontWeight: '800',
               color: '#1e293b',
               marginBottom: '1rem',
               lineHeight: '1.3'
             }}>
               Join Our{' '}
-              <span style={{ 
+              <span style={{
                 background: 'linear-gradient(135deg, #177140ff 0%, #df8b2aff 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -747,54 +747,54 @@ const Home = () => {
                 Upcoming Events
               </span>
             </h2>
-            <p style={{ 
-              fontSize: '1.1rem', 
-              color: '#64748b', 
-              maxWidth: '700px', 
+            <p style={{
+              fontSize: '1.1rem',
+              color: '#64748b',
+              maxWidth: '700px',
               margin: '0 auto',
               lineHeight: 1.6
             }}>
               Experience the future of expo management at these exciting upcoming events
             </p>
           </div>
-          
+
           {loadingExpos ? (
             <div style={{ textAlign: 'center', padding: '3rem 0' }}>
               <CSpinner color="primary" size="lg" />
-              <p style={{ marginTop: '1rem', color: '#64748b' }}>Loading upcoming events...</p>
+              <p style={{ marginTop: '1rem', color: '#7c8b64ff' }}>Loading upcoming events...</p>
             </div>
           ) : upcomingExpos.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '3rem 0' }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📅</div>
-              <h4 style={{ color: '#64748b', marginBottom: '1rem' }}>No Upcoming Events</h4>
-              <p style={{ color: '#94a3b8' }}>Check back soon for new exciting events!</p>
+              <h4 style={{ color: '#ed4a3fff', marginBottom: '1rem',fontWeight:'bold' }}>No Upcoming Events :(</h4>
+              <p style={{ color: '#382a2aff' }}>Check back soon for new exciting events!</p>
             </div>
           ) : (
             <CRow>
               {upcomingExpos.map((expo) => {
                 const { category, color, image } = getExpoCategory(expo)
-                const bgColor = `linear-gradient(135deg, ${color}15 0%, ${color}08 100%)`
                 
+
                 return (
                   <CCol lg={4} md={6} className="mb-4" key={expo._id}>
-                    <CCard style={{ 
+                    <CCard style={{
                       border: 'none',
                       borderRadius: '18px',
                       height: '100%',
-                      background: bgColor,
+                      background: 'linear-gradient(135deg, #51f08cff 0%, #214f32ff 100%)',
                       boxShadow: '0 6px 25px rgba(0,0,0,0.06)',
                       transition: 'all 0.3s ease',
                       position: 'relative',
                       overflow: 'hidden'
                     }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-6px)'
-                      e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.12)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)'
-                      e.currentTarget.style.boxShadow = '0 6px 25px rgba(0,0,0,0.06)'
-                    }}>
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-6px)'
+                        e.currentTarget.style.boxShadow = '0 15px 40px rgba(250, 68, 68, 1)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)'
+                        e.currentTarget.style.boxShadow = '0 6px 25px rgba(224, 105, 105, 1)'
+                      }}>
                       <div style={{
                         position: 'absolute',
                         top: '-20px',
@@ -804,12 +804,12 @@ const Home = () => {
                         background: `${color}15`,
                         borderRadius: '50%'
                       }}></div>
-                      
+
                       <CCardBody style={{ padding: '1.8rem' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
                           <div style={{ fontSize: '2.5rem' }}>{image}</div>
-                          <CBadge 
-                            style={{ 
+                          <CBadge
+                            style={{
                               background: getStatusColor(expo.status),
                               color: 'white',
                               fontSize: '0.7rem',
@@ -822,104 +822,115 @@ const Home = () => {
                             {expo.status}
                           </CBadge>
                         </div>
-                        
-                        <h5 style={{ 
-                          fontWeight: '700', 
-                          color: '#1e293b',
+
+                        <h5 style={{
+                          fontWeight: '700',
+                          color: '#ffffffff',
                           marginBottom: '0.8rem',
                           fontSize: '1.1rem'
                         }}>
                           {expo.title}
                         </h5>
-                        
+
                         {expo.theme && (
-                          <p style={{ 
-                            fontSize: '0.85rem',
-                            color: '#64748b',
+                          <p style={{
+                            fontSize: '0.95rem',
+                            color: '#ffffffff',
                             marginBottom: '1rem',
                             fontStyle: 'italic'
                           }}>
                             Theme: {expo.theme}
                           </p>
                         )}
-                        
+
                         <div style={{ marginBottom: '1rem' }}>
-                          <div style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
                             marginBottom: '0.4rem',
                             fontSize: '0.85rem',
-                            color: '#64748b'
+                            color: '#ffffffff'
                           }}>
                             <CIcon icon={cilCalendar} style={{ marginRight: '0.5rem', fontSize: '0.9rem' }} />
                             {formatDate(expo.date)}
                           </div>
-                          <div style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
                             marginBottom: '0.4rem',
-                            fontSize: '0.85rem',
-                            color: '#64748b'
+                            fontSize: '0.95rem',
+                            color: '#ffffffff'
                           }}>
                             <CIcon icon={cilLocationPin} style={{ marginRight: '0.5rem', fontSize: '0.9rem' }} />
                             {expo.location}
                           </div>
                         </div>
-                        
+
                         {expo.description && (
-                          <p style={{ 
-                            fontSize: '0.85rem', 
-                            color: '#64748b', 
+                          <p style={{
+                            fontSize: '0.95rem',
+                            color: '#ffffffff',
                             marginBottom: '1rem',
                             lineHeight: 1.5
                           }}>
-                            {expo.description.length > 80 
-                              ? `${expo.description.substring(0, 80)}...` 
+                            {expo.description.length > 80
+                              ? `${expo.description.substring(0, 80)}...`
                               : expo.description
                             }
                           </p>
                         )}
-                        
-                        <div style={{ 
-                          display: 'grid', 
-                          gridTemplateColumns: '1fr 1fr', 
+
+                        <div style={{
+                          display: 'grid',
+                          gridTemplateColumns: '1fr 1fr',
                           gap: '0.8rem',
                           marginBottom: '1.2rem'
                         }}>
-                          <div style={{ textAlign: 'center' }}>
-                            <div style={{ 
-                              fontSize: '1.2rem', 
-                              fontWeight: '700', 
-                              color: color 
+                          <div style={{ textAlign: '' }}>
+                            <div style={{
+                              fontSize: '1.2rem',
+                              fontWeight: '800',
+                              color: '#ffffffff'
                             }}>
                               {expo.floors}
                             </div>
-                            <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Floors</div>
+                            <div style={{ fontSize: '0.75rem', fontWeight: '800',color: '#ffffffff' }}>Floor</div>
                           </div>
-                          <div style={{ textAlign: 'center' }}>
-                            <div style={{ 
-                              fontSize: '1rem', 
-                              fontWeight: '700', 
-                              color: color 
+                          <div style={{ textAlign: 'center',marginLeft: 'auto' }}>
+                            <div style={{
+                              fontSize: '1rem',
+                              fontWeight: '800',
+                              color: '#ffffffff'
                             }}>
                               {category}
                             </div>
-                            <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Category</div>
+                            <div style={{ fontSize: '0.75rem', fontWeight: '800',color: '#ffffffff' }}>Category</div>
                           </div>
                         </div>
-                        
-                        <CButton 
+
+                        <CButton
                           as={Link}
                           to={`/expo/${expo._id}`}
                           size="sm"
-                          style={{ 
-                            background: color,
+                          style={{
+                            background: 'linear-gradient(135deg, #e11212ff 0%, #b928fce1 130%)',
                             border: 'none',
                             borderRadius: '10px',
                             padding: '0.6rem 1.2rem',
                             fontSize: '0.85rem',
                             fontWeight: '600',
-                            width: '100%'
+                            width: '50%',
+                            margin: '0 auto',   
+                            display: 'block',
+                            marginTop: '2.6rem',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.target.style.transform = 'translateY(-2px)'
+                            e.target.style.boxShadow = '0 10px 35px rgba(249, 121, 52, 0.4)'
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.transform = 'translateY(0)'
+                            e.target.style.boxShadow = '0 8px 25px rgba(255, 45, 161, 0.3)'
                           }}
                         >
                           Learn More
@@ -936,7 +947,7 @@ const Home = () => {
 
       {/* Keep all remaining sections unchanged */}
       {/* Enhanced Industry Focus Section */}
-      <div style={{ 
+      <div style={{
         background: 'linear-gradient(135deg, #850505ff 0%, #1f2e43ff 100%)',
         padding: '5rem 0',
         position: 'relative',
@@ -953,18 +964,18 @@ const Home = () => {
             radial-gradient(circle at 80% 20%, rgba(124,58,237,0.3) 0%, transparent 50%)
           `
         }}></div>
-        
+
         <CContainer style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ 
-              fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', 
-              fontWeight: '800', 
+            <h2 style={{
+              fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
+              fontWeight: '800',
               color: 'white',
               marginBottom: '1rem',
               lineHeight: '1.3'
             }}>
               Serving Industries{' '}
-              <span style={{ 
+              <span style={{
                 background: 'linear-gradient(135deg, #08783aff 0%, #d97706 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -973,17 +984,17 @@ const Home = () => {
                 Across the Globe
               </span>
             </h2>
-            <p style={{ 
-              fontSize: '1.1rem', 
-              color: 'rgba(255,255,255,0.8)', 
-              maxWidth: '650px', 
+            <p style={{
+              fontSize: '1.1rem',
+              color: 'rgba(255,255,255,0.8)',
+              maxWidth: '650px',
               margin: '0 auto',
               lineHeight: 1.6
             }}>
               EventSphere Management leads transformative expos for multiple industries
             </p>
           </div>
-          
+
           <CRow className="justify-content-center">
             {[
               { name: 'Technology & Innovation', count: '150+', icon: '💻', color: '#3b82f6' },
@@ -1006,33 +1017,33 @@ const Home = () => {
                   position: 'relative',
                   overflow: 'hidden'
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-5px)'
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
-                  e.currentTarget.style.borderColor = industry.color
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
-                }}>
-                  <div style={{ 
-                    fontSize: '2.5rem', 
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-5px)'
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
+                    e.currentTarget.style.borderColor = industry.color
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
+                  }}>
+                  <div style={{
+                    fontSize: '2.5rem',
                     marginBottom: '0.8rem'
                   }}>
                     {industry.icon}
                   </div>
-                  <div style={{ 
-                    fontSize: '2rem', 
-                    fontWeight: '800', 
+                  <div style={{
+                    fontSize: '2rem',
+                    fontWeight: '800',
                     color: industry.color,
                     marginBottom: '0.5rem',
                     textShadow: '0 2px 4px rgba(0,0,0,0.3)'
                   }}>
                     {industry.count}
                   </div>
-                  <div style={{ 
-                    color: 'rgba(255,255,255,0.9)', 
+                  <div style={{
+                    color: 'rgba(255,255,255,0.9)',
                     fontWeight: '600',
                     fontSize: '0.95rem'
                   }}>
@@ -1046,8 +1057,8 @@ const Home = () => {
       </div>
 
       {/* Enhanced CTA Section */}
-      <div style={{ 
-        background:'linear-gradient(135deg,  #8b0000 0%)',
+      <div style={{
+        background: 'linear-gradient(135deg,  #8b0000 0%)',
         padding: '5rem 0',
         position: 'relative',
         overflow: 'hidden'
@@ -1063,21 +1074,21 @@ const Home = () => {
             radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)
           `
         }}></div>
-        
+
         <CContainer style={{ position: 'relative', zIndex: 2 }}>
           <CRow className="justify-content-center text-center">
             <CCol lg={10}>
               <div style={{ marginBottom: '2rem' }}>
-                <h2 style={{ 
-                  fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', 
-                  fontWeight: '800', 
+                <h2 style={{
+                  fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+                  fontWeight: '800',
                   color: 'white',
                   marginBottom: '1.2rem',
                   lineHeight: '1.3',
                   textShadow: '0 2px 4px rgba(0,0,0,0.2)'
                 }}>
                   Ready to{' '}
-                  <span style={{ 
+                  <span style={{
                     background: 'linear-gradient(135deg, #12b05cff 0%, #f59e0b 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -1087,8 +1098,8 @@ const Home = () => {
                   </span>{' '}
                   Your Expo?
                 </h2>
-                <p style={{ 
-                  fontSize: '1.1rem', 
+                <p style={{
+                  fontSize: '1.1rem',
                   color: 'rgba(255,255,255,0.9)',
                   marginBottom: '2.5rem',
                   lineHeight: 1.7,
@@ -1098,19 +1109,19 @@ const Home = () => {
                   Let EventSphere Management elevate your expo operations into a fully digital, hassle-free experience that engages and delights every participant.
                 </p>
               </div>
-              
-              <div style={{ 
-                display: 'flex', 
+
+              <div style={{
+                display: 'flex',
                 flexWrap: 'wrap',
-                gap: '1rem', 
+                gap: '1rem',
                 justifyContent: 'center',
                 marginBottom: '2rem'
               }}>
-                <CButton 
-                  as={Link} 
-                  to="/register" 
+                <CButton
+                  as={Link}
+                  to="/register"
                   size="lg"
-                  style={{ 
+                  style={{
                     background: 'linear-gradient(135deg, #3CB371 0%, #d97706 100%)',
                     border: 'none',
                     padding: '16px 32px',
@@ -1131,12 +1142,12 @@ const Home = () => {
                 >
                   🚀 Start Your Transformation
                 </CButton>
-                <CButton 
-                  as={Link} 
-                  to="/login" 
-                  size="lg" 
+                <CButton
+                  as={Link}
+                  to="/login"
+                  size="lg"
                   variant="outline"
-                  style={{ 
+                  style={{
                     borderColor: 'rgba(255,255,255,0.4)',
                     color: 'white',
                     padding: '16px 32px',
@@ -1162,7 +1173,7 @@ const Home = () => {
                   📞 Contact EventSphere
                 </CButton>
               </div>
-              
+
               {/* Trust badges */}
               <div style={{
                 display: 'flex',
@@ -1170,7 +1181,7 @@ const Home = () => {
                 gap: '1.5rem',
                 flexWrap: 'wrap',
                 opacity: 0.8,
-                
+
               }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: '1.2rem', marginBottom: '0.3rem' }}>🏆</div>
