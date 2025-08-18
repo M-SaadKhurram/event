@@ -290,10 +290,17 @@ const AttendeeRegistration = () => {
         backgroundSize: '60px 60px'
       }}></div>
 
-      <CContainer style={{ paddingTop: '2rem', paddingBottom: '3rem', position: 'relative', zIndex: 2 }}>
+      <CContainer fluid style={{
+        paddingTop: '2rem',
+        paddingBottom: '3rem',
+        position: 'relative',
+        zIndex: 2,
+        paddingLeft: '2rem',   
+        paddingRight: '2rem'   
+      }}>
         {/* Header */}
         <CRow className="mb-4">
-          <CCol>
+          <CCol xs={12}>
             <div className="d-flex align-items-center justify-content-between flex-wrap gap-3">
               <CButton
                 color="light"
@@ -302,12 +309,12 @@ const AttendeeRegistration = () => {
                 style={{
                   borderRadius: '12px',
                   padding: '0.75rem 1.5rem',
-                  background: 'rgba(255,255,255,0.9)',
+                  background: 'linear-gradient(135deg, #32c63cff 0%, #f8a443ff 110%)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255,255,255,0.3)',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
                   fontWeight: '600',
-                  color: '#1e293b'
+                  color: '#ffffffff'
                 }}
               >
                 <CIcon icon={cilArrowLeft} className="me-2" />
@@ -317,7 +324,7 @@ const AttendeeRegistration = () => {
               {expo && (
                 <CBadge
                   style={{
-                    background: gradient,
+                    background: 'linear-gradient(135deg, #e13630ff 0%, #ce43f8ff 120%)',
                     color: 'white',
                     fontSize: '1rem',
                     padding: '0.75rem 1.5rem',
@@ -335,17 +342,17 @@ const AttendeeRegistration = () => {
 
         {/* Progress Bar */}
         <CRow className="mb-4">
-          <CCol>
+          <CCol xs={12}>
             <CCard style={{
               border: 'none',
               borderRadius: '20px',
               boxShadow: '0 10px 25px rgba(0,0,0,0.08)',
-              background: 'rgba(255,255,255,0.95)',
+              background: 'linear-gradient(135deg, #6db53dff 0%, #fde71dff 120%)',
               backdropFilter: 'blur(10px)'
             }}>
               <CCardBody style={{ padding: '2rem' }}>
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                  <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b' }}>
+                  <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#000000ff' }}>
                     Registration Progress
                   </span>
                   <span style={{ fontSize: '0.9rem', color: color, fontWeight: '600' }}>
@@ -357,7 +364,7 @@ const AttendeeRegistration = () => {
                   style={{
                     height: '12px',
                     borderRadius: '6px',
-                    background: '#e5e7eb'
+                    background: '#ffffffff'
                   }}
                 >
                   <div
@@ -369,11 +376,11 @@ const AttendeeRegistration = () => {
                       transition: 'width 0.3s ease'
                     }}
                   ></div>
-                </CProgress>
+                </CProgress>  
                 <div className="d-flex justify-content-between mt-2">
-                  <span style={{ fontSize: '0.8rem', color: currentStep >= 1 ? color : '#94a3b8' }}>Expo Info</span>
-                  <span style={{ fontSize: '0.8rem', color: currentStep >= 2 ? color : '#94a3b8' }}>Registration</span>
-                  <span style={{ fontSize: '0.8rem', color: currentStep >= 3 ? color : '#94a3b8' }}>Entry Pass</span>
+                  <span style={{ fontSize: '0.8rem', color: currentStep >= 1 ? color : '#000000ff' }}>Expo Info</span>
+                  <span style={{ fontSize: '0.8rem', color: currentStep >= 2 ? color : '#000000ff' }}>Registration</span>
+                  <span style={{ fontSize: '0.8rem', color: currentStep >= 3 ? color : '#000000ff' }}>Entry Pass</span>
                 </div>
               </CCardBody>
             </CCard>
@@ -382,7 +389,7 @@ const AttendeeRegistration = () => {
 
         <CRow>
           {/* Expo Information */}
-          <CCol lg={4}>
+          <CCol xs={12} lg={4} className="mb-4 mb-lg-0">
             {expo && (
               <CCard style={{
                 border: 'none',
@@ -395,13 +402,13 @@ const AttendeeRegistration = () => {
                 top: '2rem'
               }}>
                 <CCardHeader style={{
-                  background: `linear-gradient(135deg, ${color}15 0%, ${color}08 100%)`,
+                  background: `linear-gradient(135deg,  #ff1919  0%,  #9140c7ff  140%)`,
                   border: 'none',
                   borderRadius: '20px 20px 0 0',
                   fontWeight: '700',
                   fontSize: '1.2rem',
                   padding: '1.5rem',
-                  color: '#1e293b',
+                  color: '#ffffffff',
                 }}>
                   <CIcon icon={cilCalendar} className="me-2" />
                   Event Details
@@ -419,7 +426,7 @@ const AttendeeRegistration = () => {
 
                   <div className="d-flex align-items-center mb-3">
                     <div style={{
-                      background: color,
+                      background: 'green',
                       borderRadius: '8px',
                       padding: '0.5rem',
                       marginRight: '0.75rem'
@@ -441,7 +448,7 @@ const AttendeeRegistration = () => {
 
                   <div className="d-flex align-items-center mb-3">
                     <div style={{
-                      background: color,
+                      background: 'green',
                       borderRadius: '8px',
                       padding: '0.5rem',
                       marginRight: '0.75rem'
@@ -456,7 +463,7 @@ const AttendeeRegistration = () => {
 
                   <div className="d-flex align-items-center">
                     <div style={{
-                      background: color,
+                      background: 'green',
                       borderRadius: '8px',
                       padding: '0.5rem',
                       marginRight: '0.75rem'
@@ -494,7 +501,7 @@ const AttendeeRegistration = () => {
           </CCol>
 
           {/* Registration Form */}
-          <CCol lg={8}>
+          <CCol xs={12} lg={8}>
             {success && registeredAttendee ? (
               <CCard style={{
                 border: 'none',
@@ -504,7 +511,7 @@ const AttendeeRegistration = () => {
                 backdropFilter: 'blur(10px)'
               }}>
                 <CCardHeader style={{
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                   
                   border: 'none',
                   borderRadius: '20px 20px 0 0',
                   color: 'white',
@@ -600,13 +607,13 @@ const AttendeeRegistration = () => {
                 backdropFilter: 'blur(10px)'
               }}>
                 <CCardHeader style={{
-                  background: `linear-gradient(135deg, ${color}15 0%, ${color}08 100%)`,
+                  background: `linear-gradient(135deg,  #ff1919  0%,  #9140c7ff  140%)`,
                   border: 'none',
                   borderRadius: '20px 20px 0 0',
                   fontWeight: '700',
                   fontSize: '1.3rem',
                   padding: '2rem',
-                  color: '#1e293b'
+                  color: '#ffffffff'
                 }}>
                   <CIcon icon={cilUser} className="me-2" />
                   Attendee Registration Form
@@ -799,19 +806,28 @@ const AttendeeRegistration = () => {
                       />
                     </div>
 
-                    <div className="d-grid gap-3">
+                    <div className="d-grid gap-3 justify-content-center">
                       <CButton
                         type="submit"
                         size="lg"
                         disabled={submitting}
                         style={{
-                          background: gradient,
+                          background: 'linear-gradient(135deg, #32c63cff 0%, #f8a443ff 110%)',
                           border: 'none',
                           borderRadius: '12px',
                           padding: '1rem 2rem',
                           fontSize: '1.1rem',
                           fontWeight: '600',
-                          boxShadow: `0 8px 20px ${color}30`
+                          width: '100%',
+                          boxShadow: `0 8px 20px #807365ff `
+                        }}
+                         onMouseEnter={(e) => {
+                          e.target.style.transform = 'translateY(-2px)'
+                          e.target.style.boxShadow = '0 12px 35px rgba(237, 167, 87, 0.4)'
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.transform = 'translateY(0)'
+                          e.target.style.boxShadow = '0 8px 25px rgba(109, 231, 98, 0.3)'
                         }}
                       >
                         {submitting ? (
