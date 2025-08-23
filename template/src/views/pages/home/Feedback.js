@@ -61,17 +61,17 @@ const Feedback = () => {
     
     // Reset form
     setFeedbackData({
-      name: '',
-      email: '',
-      eventType: '',
-      overallRating: '',
-      easeOfUse: '',
-      customerService: '',
-      features: '',
-      recommendation: '',
-      improvements: '',
-      testimonial: '',
-      allowPublic: false
+    fullName: '',
+    email: '',
+    eventType: '',
+    satisfaction: 0,
+    easeOfUse: 0,
+    customerService: 0,
+    features: 0,
+    recommendation: '',
+    improvement: '',
+    successStory: '',
+    allowPublicUse: false
     })
   }
 
@@ -313,6 +313,7 @@ const Feedback = () => {
                   </div>
                 </div>
                 
+                {/* form section */}
                 <CCardBody style={{ padding: '3rem',background: 'linear-gradient(135deg, #c71616ff 0%, #de4b9aff 100%)', }}>
                   <CForm onSubmit={handleSubmit}>
                     {/* Personal Information */}

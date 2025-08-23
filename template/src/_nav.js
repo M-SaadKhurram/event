@@ -7,6 +7,7 @@ import {
   cilPlus,
   cilHamburgerMenu,
   cilBuilding,
+  cilCommentSquare, // Add feedback icon
 } from '@coreui/icons'
 import { CNavGroup, CNavItem } from '@coreui/react'
 import { useAuth } from './context/AuthContext'
@@ -15,7 +16,7 @@ const useNavigation = () => {
   const { user } = useAuth()
 
   // Exhibitor-only navigation
-  if (user?.role =='Exhibitor') {
+  if (user?.role == 'Exhibitor') {
     return [
       {
         component: CNavGroup,
@@ -33,6 +34,19 @@ const useNavigation = () => {
             name: 'Add Exhibitor',
             to: '/dashboard/exhibitor/create',
             icon: <CIcon icon={cilPlus} customClassName="nav-icon" />,
+          },
+        ],
+      },
+      {
+        component: CNavGroup,
+        name: 'Feedback',
+        to: '/dashboard/feedback',
+        icon: <CIcon icon={cilCommentSquare} customClassName="nav-icon" />,
+        items: [
+          {
+            component: CNavItem,
+            name: 'User Feedback',
+            to: '/dashboard/feedback',
           },
         ],
       },
@@ -105,6 +119,19 @@ const useNavigation = () => {
           name: 'Add Exhibitor',
           to: '/dashboard/exhibitor/create',
           icon: <CIcon icon={cilPlus} customClassName="nav-icon" />,
+        },
+      ],
+    },
+    {
+      component: CNavGroup,
+      name: 'Feedback',
+      to: 'dashboard/feedback',
+      icon: <CIcon icon={cilCommentSquare} customClassName="nav-icon" />,
+      items: [
+        {
+          component: CNavItem,
+          name: 'User Feedback',
+          to: 'dashboard/feedback',
         },
       ],
     },

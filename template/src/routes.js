@@ -18,7 +18,7 @@ const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'))
 const Progress = React.lazy(() => import('./views/base/progress/Progress'))
 const Spinners = React.lazy(() => import('./views/base/spinners/Spinners'))
 const Tables = React.lazy(() => import('./views/base/tables/Tables'))
-const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'))
+const Tooltips = React.lazy(() => import  ('./views/base/tooltips/Tooltips'))
 
 // Buttons
 const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'))
@@ -73,6 +73,12 @@ const AttendeesList = React.lazy(() => import('./views/pages/attendee/index'))
 const SchedulesList = React.lazy(() => import('./views/schedules/index'))
 const ScheduleCreate = React.lazy(() => import('./views/schedules/Create'))
 const ScheduleEdit = React.lazy(() => import('./views/schedules/Edit'))
+
+// Feedback components
+const FeedbackList = React.lazy(() => import('./views/UFeedback/Feedback'))
+
+
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -143,6 +149,17 @@ const routes = [
   { path: '/schedules', name: 'Schedules', element: SchedulesList, exact: true },
   { path: '/schedules/create', name: 'Create Schedule', element: ScheduleCreate },
   { path: '/schedules/edit/:id', name: 'Edit Schedule', element: ScheduleEdit },
+
+  
+  
+  // Feedback route
+{ path: '/feedback', name: 'User Feedback', element: <FeedbackList />, exact: true },
+
+
+
+
+
+
 ]
 
 export default routes
