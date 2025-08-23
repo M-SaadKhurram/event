@@ -14,7 +14,10 @@ import {
   CFormLabel,
   CAlert,
   CProgress,
-  CFormCheck
+  CFormCheck,
+  CToast,
+  CToastBody,
+  CToaster
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { 
@@ -28,7 +31,8 @@ import {
   cilShieldAlt,
   cilChart
 } from '@coreui/icons'
-
+import { submitFeedback } from '../../../services/feedback' // adjust path if needed
+ 
 const Feedback = () => {
   const [feedbackData, setFeedbackData] = useState({
     name: '',
@@ -44,6 +48,7 @@ const Feedback = () => {
     allowPublic: false
   })
   const [showAlert, setShowAlert] = useState(false)
+  const [showToast, setShowToast] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -53,26 +58,29 @@ const Feedback = () => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Feedback submitted:', feedbackData)
-    setShowAlert(true)
-    setTimeout(() => setShowAlert(false), 5000)
-    
-    // Reset form
-    setFeedbackData({
-    fullName: '',
-    email: '',
-    eventType: '',
-    satisfaction: 0,
-    easeOfUse: 0,
-    customerService: 0,
-    features: 0,
-    recommendation: '',
-    improvement: '',
-    successStory: '',
-    allowPublicUse: false
-    })
+    try {
+      await submitFeedback(feedbackData)
+      setShowAlert(true)
+      setTimeout(() => setShowAlert(false), 5000)
+      // Reset form
+      setFeedbackData({
+        name: '',
+        email: '',
+        eventType: '',
+        overallRating: '',
+        easeOfUse: '',
+        customerService: '',
+        features: '',
+        recommendation: '',
+        improvements: '',
+        testimonial: '',
+        allowPublic: false
+      })
+    } catch (err) {
+      alert('Error submitting feedback. Please try again.')
+    }
   }
 
   const StarRating = ({ rating, onRatingChange, name }) => {
@@ -117,6 +125,17 @@ const Feedback = () => {
 
   return (
     <div style={{ backgroundColor: '#fff', overflow: 'hidden' }}>
+      {/* Toast Notification */}
+      <CToaster placement="top-end">
+        {showToast && (
+          <CToast autohide visible color="success" onClose={() => setShowToast(false)}>
+            <CToastBody>
+              🎉 Thank you! Your feedback has been submitted.
+            </CToastBody>
+          </CToast>
+        )}
+      </CToaster>
+
       {/* Hero Section */}
       <div style={{ 
         background: 'linear-gradient(135deg,  #8b0000 0%)',
@@ -656,7 +675,6 @@ const Feedback = () => {
             borderRadius: '16px',
             height: '100%',
             background: '#60eb60ff',
-        
             boxShadow: '0 6px 25px rgba(0,0,0,0.08)',
             transition: 'all 0.3s ease'
           }}

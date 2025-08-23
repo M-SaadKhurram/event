@@ -14,7 +14,7 @@ const {
 
 // Routes
 router.post("/", ensureAuthenticated, upload.single("attachment"), createExpo); 
-router.get("/", getAllExpos);
+router.get("/",ensureAuthenticated, getAllExpos);
 router.get("/available-floors", ensureAuthenticated, getAvailableFloors); // Add this route
 router.get("/:id", getExpoById);
 router.put("/:id", ensureAuthenticated, upload.single("attachment"), updateExpo);

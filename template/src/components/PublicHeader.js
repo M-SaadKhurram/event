@@ -124,7 +124,7 @@ const PublicHeader = () => {
               </CButton>
               <CButton
                 as={Link}
-                to="/register"
+                to="/register?role=Exhibitor"
                 size="sm"
                 style={{
                   background: 'linear-gradient(135deg, #32c63cff 0%, #d97706 100%)',
@@ -211,7 +211,7 @@ const PublicHeader = () => {
               </CButton>
               <CButton
                 as={Link}
-                to="/register"
+                to="/register?role=Exhibitor"
                 onClick={() => setVisible(false)}
                 style={{
                   background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',

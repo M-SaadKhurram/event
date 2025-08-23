@@ -153,7 +153,7 @@ const routes = [
   
   
   // Feedback route
-{ path: '/feedback', name: 'User Feedback', element: <FeedbackList />, exact: true },
+{ path: '/feedback', name: 'User Feedback', element: FeedbackList },
 
 
 
