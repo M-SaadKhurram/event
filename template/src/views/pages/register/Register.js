@@ -241,16 +241,17 @@ const Register = () => {
                   </div>
 
                   <div className="text-center mt-4">
-                    <p style={{ color: '#64748b', fontSize: '0.9rem' }}>
+                    <p style={{ color: '#ffd500ff', fontSize: '0.9rem' }}>
                       Already have an account?{' '}
                       <CButton
                         color="link"
                         onClick={() => navigate('/login')}
                         style={{ 
                           textDecoration: 'none', 
-                          color: getRoleColor(role),
+                  
+                          color: '#37bc06ff',
                           fontWeight: '600',
-                          padding: 0
+                          paddingBottom:'13px',
                         }}
                       >
                         Sign In

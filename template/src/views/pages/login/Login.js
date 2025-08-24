@@ -82,11 +82,11 @@ const Login = () => {
         <CRow className="justify-content-center">
           <CCol md={8}>
             <CCardGroup>
-              <CCard className="p-4">
+              <CCard className="p-4" style={{ color: 'purple', fontWeight: 'bold',background:'linear-gradient(135deg,  #ce2323ff 0%, #7b32cfff  100%)' }}>
                 <CCardBody>
                   <CForm onSubmit={handleSubmit}>
-                    <h1>Login</h1>
-                    <p className="text-body-secondary">Sign In to your account</p>
+                    <h1 style={{color:'white'}} >Login</h1>
+                    <p className="text-body-secondary" >Sign In to your account</p>
                     
                     {error && (
                       <CAlert color="danger" className="mb-3">
@@ -135,7 +135,7 @@ const Login = () => {
                     <CRow>
                       <CCol xs={6}>
                         <CButton 
-                          color="primary" 
+                          color="success" 
                           className="px-4"
                           type="submit"
                           disabled={loading}
@@ -144,7 +144,7 @@ const Login = () => {
                         </CButton>
                       </CCol>
                       <CCol xs={6} className="text-right">
-                        <CButton color="link" className="px-0">
+                        <CButton color="white" className="px-0">
                           Forgot password?
                         </CButton>
                       </CCol>
@@ -152,7 +152,7 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
+              <CCard className="text-white bg-primary py-5" style={{ width: '44%',background:'linear-gradient(135deg,  #37bc06ff 0%, #bfa826ff  120%)' }}>
                 <CCardBody className="text-center">
                   <div>
                     <h2>Sign up</h2>
