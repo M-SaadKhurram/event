@@ -131,7 +131,7 @@ const useNavigation = () => {
         {
           component: CNavItem,
           name: 'User Feedback',
-          to: 'dashboard/feedback',
+          to: '/dashboard/feedback',
         },
       ],
     },
